@@ -20,7 +20,8 @@ interval, and has been checked against a held-out cohort exactly once.
 PathFinder predicts two things about a first-year university student: the final grade,
 and the risk of dropping out. It started as my Machine Learning course project in the
 first year at PSL. This repository rebuilds it, and it also keeps a record of what the
-original got wrong ([AUDIT.md](AUDIT.md)): four validation defects, one mis-specified
+original got wrong ([AUDIT.md](AUDIT.md); the original notebook is kept, unmodified, in
+[`original/`](original/)): four validation defects, one mis-specified
 model, and several claims the method did not support. Every fix is measured.
 
 Every number below is generated from `results/*.json` by the experiment scripts. None
@@ -512,6 +513,7 @@ OULAD CSVs in `data/raw/oulad/` (see [data/README.md](data/README.md)).
 | `experiments/06`–`08` | feature questions, office views, story figures |
 | `experiments/09` | OULAD: who leaves in the next four weeks, and how early |
 | `experiments/render_readme.py` | fills this file's tables from `results/` |
+| `original/` | the course notebook this repository rebuilds, unmodified |
 
 ## Limitations
 

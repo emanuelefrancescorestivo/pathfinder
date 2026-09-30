@@ -95,8 +95,8 @@ audit = {
     "notebook_printed": {
         "oof_precision_cell_118": 0.828,
         "oof_recall_cell_118": 0.984,
-        "test_precision_cell_136": 0.540,
-        "test_recall_cell_136": 0.947,
+        "test_precision_cell_131": 0.540,
+        "test_recall_cell_131": 0.947,
         "calibrated_mean_predicted_cell_133": 0.257,
         "cv_auc_resampled_cell_135": 0.9577,
         "test_auc_cell_135": 0.9166,

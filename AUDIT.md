@@ -1,7 +1,8 @@
 # Audit of the original notebook
 
-The original is `ML2_FINAL_PATHFINDERCOMPLETE_2.ipynb` (first-year ML course, PSL).
-Cell numbers below refer to it. Each item gives what was wrong, how I found it, and its
+The original is [`original/ML2_FINAL_PATHFINDERCOMPLETE_2.ipynb`](original/) (first-year
+ML course, PSL), kept unmodified with its outputs. Cell numbers below count its cells
+from 0 in file order. Each item gives what was wrong, how I found it, and its
 status in this repository. Where a number is reproduced here, it comes from
 `experiments/03_audit_original.py`. Numbers quoted from the notebook are marked "as
 printed".
@@ -189,3 +190,13 @@ Observed dropout rate: 0.190 in the test set, 0.150 in the training set.
 - **How found.** Running `experiments/09_time_oulad.py` end to end on a synthetic
   dataset with OULAD's schema, before any real data, and reading the chart.
 - **Status.** Fixed: a final "13+" bin. The summary table was never affected.
+
+### 17. A quoted number cited the wrong notebook cell
+
+- **What.** The test precision and recall quoted from the notebook (0.540 and 0.947)
+  were attributed to cell 136. They are printed in cell 131; cell 136 is a summary
+  table that rounds them (0.55, 0.95).
+- **How found.** Checking every cell reference in this file against the notebook when
+  it was added to the repository (`original/`).
+- **Status.** Fixed in `experiments/03_audit_original.py`; the numbers were right, only
+  the citation moved.

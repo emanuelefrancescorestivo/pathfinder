@@ -243,7 +243,7 @@ def audit_smote() -> str:
                 "original notebook, as printed",
                 "0.258",
                 f"{n['oof_precision_cell_118']:.3f} / {n['oof_recall_cell_118']:.3f}",
-                f"{n['test_precision_cell_136']:.3f} / {n['test_recall_cell_136']:.3f}",
+                f"{n['test_precision_cell_131']:.3f} / {n['test_recall_cell_131']:.3f}",
             ],
             [
                 "SMOTE before CV (reproduced)",
