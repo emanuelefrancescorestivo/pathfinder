@@ -1,0 +1,55 @@
+{
+  "n_train": 1100,
+  "uniform_check": {
+    "attendance_rate_pct": {
+      "min": 40.07,
+      "max": 99.95,
+      "ks_p_uniform": 0.9623164669844543
+    },
+    "assignment_completion_pct": {
+      "min": 25.0,
+      "max": 100.0,
+      "ks_p_uniform": 2.6053933458940577e-20
+    },
+    "quiz_average_pct": {
+      "min": 20.05,
+      "max": 99.95,
+      "ks_p_uniform": 0.7814735488433946
+    },
+    "hours_self_study_week": {
+      "min": 0.02,
+      "max": 24.99,
+      "ks_p_uniform": 0.024109212219584397
+    },
+    "prior_gpa_20": {
+      "min": 6.01,
+      "max": 19.99,
+      "ks_p_uniform": 0.6111729554531767
+    },
+    "internet_reliability_score": {
+      "min": 0.0,
+      "max": 9.99,
+      "ks_p_uniform": 0.7296979394896737
+    },
+    "commute_minutes": {
+      "min": 5.0,
+      "max": 90.0,
+      "ks_p_uniform": 0.7993958205601419
+    },
+    "financial_stress_score": {
+      "min": 0.0,
+      "max": 9.99,
+      "ks_p_uniform": 0.08108052362293117
+    },
+    "participation_score": {
+      "min": 1.06,
+      "max": 10.0,
+      "ks_p_uniform": 2.3378988215312673e-41
+    }
+  },
+  "n_features_consistent_with_uniform_p_gt_0_5": 5,
+  "share_grade_at_100": 0.1890909090909091,
+  "dropout_rate": 0.15,
+  "mean_grade_dropouts": 63.56181818181819,
+  "mean_grade_stayers": 86.47273796791443
+}
