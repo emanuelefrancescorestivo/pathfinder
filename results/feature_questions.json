@@ -1,0 +1,154 @@
+{
+  "protocol": {
+    "repeats": 5,
+    "folds": 5,
+    "seed": 0
+  },
+  "questions": [
+    {
+      "id": "log_absences",
+      "question": "Absences have a long right tail. Does log(1 + absences) fit better?",
+      "origin": "notebook cell 23",
+      "grade_rmse_delta": [
+        0.020001181803413814,
+        0.02232953595366105,
+        0.02044841616551185,
+        0.02112625171435223,
+        0.022348811477580277
+      ],
+      "grade_verdict": "hurts",
+      "dropout_auc_delta": [
+        -0.0018992059633771152,
+        -0.0017825311942958333,
+        -0.002262194133851869,
+        -0.003046507859342129,
+        -0.0011732296224274963
+      ],
+      "dropout_auc_verdict": "hurts",
+      "dropout_brier_delta": [
+        0.00032854627226336364,
+        0.0001750815212997331,
+        0.0005095150099288237,
+        0.0008254256410176741,
+        -1.9044675471077688e-05
+      ],
+      "dropout_brier_verdict": "no consistent effect"
+    },
+    {
+      "id": "tutoring_flag",
+      "question": "Many students never use tutoring. Does a 'uses tutoring' flag add anything to the session count?",
+      "origin": "notebook cell 23",
+      "grade_rmse_delta": [
+        0.0014824449067072365,
+        9.047451689880859e-05,
+        0.004903348501571259,
+        0.0018952057228851515,
+        0.0025324712878180833
+      ],
+      "grade_verdict": "hurts",
+      "dropout_auc_delta": [
+        -0.0006481931615621717,
+        -6.481931615565095e-06,
+        -0.0002787230594717416,
+        -0.0004731810079403598,
+        -0.00032409658078114134
+      ],
+      "dropout_auc_verdict": "hurts",
+      "dropout_brier_delta": [
+        0.0006966154705537048,
+        1.5831866777352155e-05,
+        0.00018163609430696392,
+        0.0003896184051623286,
+        8.681997342560588e-05
+      ],
+      "dropout_brier_verdict": "hurts"
+    },
+    {
+      "id": "drop_dormitory",
+      "question": "The dormitory block failed a chi-square test. Is anything lost by dropping it?",
+      "origin": "notebook cell 27",
+      "grade_rmse_delta": [
+        -0.03080423106395358,
+        -0.010737743088775176,
+        -0.01309651490245578,
+        -0.02982933291563139,
+        -0.014163619463355204
+      ],
+      "grade_verdict": "helps",
+      "dropout_auc_delta": [
+        0.001160265759196255,
+        0.0010046994004213605,
+        0.000362988170474865,
+        0.0011797115540430614,
+        0.00016204829039045965
+      ],
+      "dropout_auc_verdict": "helps",
+      "dropout_brier_delta": [
+        -0.000930208022783624,
+        -0.0009799660986360564,
+        -0.0006495535133708569,
+        -0.0011157405882955274,
+        -0.0006784773633284197
+      ],
+      "dropout_brier_verdict": "helps"
+    },
+    {
+      "id": "compact_six",
+      "question": "The notebook proposed six features as 'most of the explainable variance'. Is the compact set as good?",
+      "origin": "notebook cell 32",
+      "grade_rmse_delta": [
+        1.7942103633024455,
+        1.8172374768768522,
+        1.7929393561572136,
+        1.8105934699526118,
+        1.8055084438966666
+      ],
+      "grade_verdict": "hurts",
+      "dropout_auc_delta": [
+        -0.029564090098849527,
+        -0.02940852374007452,
+        -0.02976502997893371,
+        -0.028293631502187666,
+        -0.03075676551612383
+      ],
+      "dropout_auc_verdict": "hurts",
+      "dropout_brier_delta": [
+        0.012818881224647416,
+        0.012818927047782064,
+        0.013199994831219655,
+        0.012663119312051191,
+        0.013475315726657652
+      ],
+      "dropout_brier_verdict": "hurts"
+    },
+    {
+      "id": "interactions",
+      "question": "Do pairwise interactions (e.g. attendance x assignments) capture something the additive model misses?",
+      "origin": "notebook cells 70, 81",
+      "grade_rmse_delta": [
+        0.19284687872050554,
+        0.24080110243820396,
+        0.1861579340120434,
+        0.20402286716748286,
+        0.3136904506650078
+      ],
+      "grade_verdict": "hurts",
+      "dropout_auc_delta": [
+        -0.027632474477394253,
+        -0.02712040187976017,
+        -0.032241127856101115,
+        -0.01962728893210175,
+        -0.033719008264462835
+      ],
+      "dropout_auc_verdict": "hurts",
+      "dropout_brier_delta": [
+        0.012179573405276325,
+        0.015668480889675485,
+        0.01790238622306932,
+        0.012372978319178357,
+        0.019092472285291665
+      ],
+      "dropout_brier_verdict": "hurts"
+    }
+  ]
+}

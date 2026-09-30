@@ -367,6 +367,89 @@ def headline() -> str:
     )
 
 
+def feature_questions() -> str:
+    f = j("feature_questions")
+    if f is None:
+        return "_Not generated: run experiments/06_feature_questions.py._"
+    rows = []
+    for q in f["questions"]:
+        g, a = q["grade_rmse_delta"], q["dropout_auc_delta"]
+        rows.append(
+            [
+                q["question"],
+                q["origin"],
+                f"{sum(g) / len(g):+.3f} ({q['grade_verdict']})",
+                f"{sum(a) / len(a):+.4f} ({q['dropout_auc_verdict']})",
+            ]
+        )
+    p = f["protocol"]
+    return table(
+        ["question", "from", "grade: change in CV RMSE", "dropout: change in CV AUC"], rows
+    ) + (
+        f"\n\nMean over {p['repeats']} repeats of {p['folds']}-fold CV, each variant on the "
+        'same folds as the baseline. "helps" or "hurts" means the sign held in every '
+        "repeat."
+    )
+
+
+def routing() -> str:
+    a = j("admin_views")
+    if a is None:
+        return "_Not generated: run experiments/07_admin_views.py._"
+    rows = [
+        [
+            r["label"],
+            str(r["in_capacity"]),
+            str(r["flagged_cost"]),
+            str(r["dropouts_among_flagged_cost"]),
+        ]
+        for r in a["routing"]
+        if r["flagged_cost"] or r["in_capacity"]
+    ]
+    kc = a["kmeans_check"]
+    sil = max(r["silhouette"] for r in kc["train"])
+    ari = [r["stability_ari"] for r in kc["train"]]
+    return table(
+        [
+            "office",
+            f"in the top {a['k']}",
+            f"above the cost threshold ({a['threshold']:.3f})",
+            "of those, actually dropped out",
+        ],
+        rows,
+    ) + (
+        f"\n\nK-means on the risk drivers of the {kc['train_flagged_n']} flagged training "
+        f"students: best silhouette {sil:.3f} over k = 2 to 6; agreement between bootstrap "
+        f"refits (adjusted Rand index) falls from {max(ari):.2f} to {min(ari):.2f} as k grows."
+    )
+
+
+def student_card() -> str:
+    a = j("admin_views")
+    if a is None:
+        return "_Not generated: run experiments/07_admin_views.py._"
+    lines = []
+    for c in a["cards"]:
+        head = (
+            f"- **Rank {c['rank']}**: risk {c['p_dropout']:.2f}, expected grade "
+            f"{c['expected_grade']:.0f}, office: {c['service']}."
+        )
+        if c["plans"]:
+            opts = []
+            for pl in c["plans"]:
+                opts.append(
+                    " and ".join(
+                        f"{st['lever']} {st['now']:.1f} → {st['planned']:.1f}" for st in pl["steps"]
+                    )
+                    + f" (effort {pl['effort_sd']:.2f} SD, risk after {pl['risk_after']:.3f})"
+                )
+            head += " What-ifs: " + "; or ".join(opts) + "."
+        else:
+            head += " No what-if with at most two levers inside the observed ranges."
+        lines.append(head)
+    return "\n".join(lines)
+
+
 BLOCKS: dict[str, Callable[[], str]] = {
     "headline": headline,
     "synthetic": synthetic,
@@ -377,6 +460,9 @@ BLOCKS: dict[str, Callable[[], str]] = {
     "audit_smote": audit_smote,
     "audit_calibration": audit_calibration,
     "early_warning": early_warning,
+    "feature_questions": feature_questions,
+    "routing": routing,
+    "student_card": student_card,
 }
 PATTERN = re.compile(r"(<!-- BEGIN:(\w+) -->\n)(.*?)(<!-- END:\2 -->)", re.S)
 

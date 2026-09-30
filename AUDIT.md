@@ -106,8 +106,10 @@ Observed dropout rate: 0.190 in the test set, 0.150 in the training set.
 
 - **What.** DiCE counterfactuals (chapter 4) were presented as "what they should
   change", and the recommended interventions as if they would work.
-- **Status.** Removed. Per-student reasons are exact model contributions, labelled as
-  explaining the model, not the student.
+- **Status.** Replaced in v0.3. What-if plans are back (`counterfactual.py`), solved
+  exactly for the logistic model: sparse (at most two levers), diverse, bounded to the
+  observed range, and checked against the model by a test. Every card and every file
+  written by `pathfinder rank` says they describe the model, not the student.
 
 ## 9. Clusters that are not there
 
@@ -115,7 +117,10 @@ Observed dropout rate: 0.190 in the test set, 0.150 in the training set.
   (cell 176, as printed): the clusters are hardly separated. The clusters were named as
   archetypes ("The Disconnected") with intervention plans. The accompanying text cites
   silhouette 0.225 and "three profiles" for k = 4 (cell 175).
-- **Status.** Removed.
+- **Status.** Replaced in v0.3. `segments.kmeans_check` re-measures the question on
+  this repository's model (silhouette and bootstrap stability for k = 2 to 6, shown in
+  the README), and finds no structure either. Students are routed to an office by
+  their first reason instead: a rule an office can read and dispute.
 
 ## 10. Hand-typed results
 
@@ -145,3 +150,34 @@ Observed dropout rate: 0.190 in the test set, 0.150 in the training set.
   to float".
 - **Status.** Fixed (`is_numeric_dtype`), with an assertion that every feature is
   numeric.
+
+### 13. Routing by summed contributions favoured the largest service
+
+- **What.** The first routing rule summed each service's feature contributions. The
+  academic service owns five features, the financial one owns one, so the sum favoured
+  the academic service by construction.
+- **How found.** Looking at the share of students routed to each service before
+  drawing the chart.
+- **Status.** Fixed: route by the single largest contribution (the first reason
+  shown). Academic support still receives most referrals, because assignment completion
+  has the largest coefficient; that is a property of the model and is stated in the
+  README.
+
+### 14. A feature change found after the test evaluation
+
+- **What.** `experiments/06_feature_questions.py` finds that dropping the dormitory
+  block improves both models in every CV repeat, by a small margin.
+- **How found.** The feature-question experiment, written after the single test
+  evaluation.
+- **Status.** Not applied. Applying it and scoring the same test set again would repeat
+  item 5. It is recorded for the next version, which will need new data to evaluate.
+
+### 15. Minimum-norm what-ifs are exact but impractical
+
+- **What.** The first what-if solver returned the smallest change measured in
+  standard deviations. That change moves every lever a little ("+0.15 tutoring
+  sessions").
+- **How found.** Reading the plans for the first three example students.
+- **Status.** Fixed: `sparse_plans` solves every subset of at most two levers exactly,
+  rounds integer levers to whole units, and keeps up to three plans, each using a lever
+  the others do not. The minimum-norm solver remains as `joint_plan`.

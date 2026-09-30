@@ -1,5 +1,20 @@
 # PathFinder: early warning for first-year dropout
 
+[![ci](https://github.com/emanuelefrancescorestivo/pathfinder/actions/workflows/ci.yml/badge.svg)](https://github.com/emanuelefrancescorestivo/pathfinder/actions/workflows/ci.yml)
+[![license: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+
+**Each week, an advising office gets a ranked list of students who need a conversation.
+Each name comes with the office that should call, the reasons, and what the model would
+need to see change.** Every number behind it is cross-validated, has an uncertainty
+interval, and has been checked against a held-out cohort exactly once.
+
+![This term's caseload](docs/figures/caseload.svg)
+
+> **Read this first.** The data is the synthetic dataset supplied with a course, not
+> real students (see [below](#read-this-first-the-data-is-synthetic)). The system and
+> the method are what this repository demonstrates; the numbers describe the generator,
+> not students.
+
 PathFinder predicts two things about a first-year university student: the final grade,
 and the risk of dropping out. It started as my Machine Learning course project in the
 first year at PSL. This repository rebuilds it, and it also keeps a record of what the
@@ -15,6 +30,93 @@ is typed by hand.
 - **A usable answer for an advising office:** contacting the 30 highest-risk of 300 test students finds 22 of the 57 dropouts (precision 0.73 [0.60, 0.90]).
 - **All of it on synthetic data.** Several features are uniformly distributed and dropouts have final grades. The early-warning question needs real data: see *Early warning on real data* below.
 <!-- END:headline -->
+
+## For an advising office
+
+**Who to see first.** The chart above ranks a held-out cohort of 300 students by
+predicted dropout risk. An office that can see 30 students this week takes the first 30.
+An office that can state what a missed dropout costs compared with an unneeded meeting
+contacts everyone above the matching threshold. Both policies are in
+[Task 2](#task-2-dropout-risk-and-what-an-office-can-do-with-it).
+
+**Which office should call.** Each flagged student goes to the service that owns their
+first reason: engagement follow-up (attendance, absences, participation), academic
+support (coursework, self-study, prior GPA, tutoring), financial aid, or digital and
+travel access.
+
+![Where the referrals would go](docs/figures/routing.svg)
+
+<!-- BEGIN:routing -->
+| office | in the top 30 | above the cost threshold (0.167) | of those, actually dropped out |
+|---|---|---|---|
+| Engagement follow-up | 5 | 9 | 6 |
+| Academic support | 24 | 66 | 39 |
+| Financial aid | 1 | 3 | 1 |
+| Digital & travel access | 0 | 1 | 1 |
+
+K-means on the risk drivers of the 267 flagged training students: best silhouette 0.158 over k = 2 to 6; agreement between bootstrap refits (adjusted Rand index) falls from 0.65 to 0.34 as k grows.
+<!-- END:routing -->
+
+The original notebook clustered these students into named "archetypes". I checked
+whether that structure exists, and it does not: K-means finds weak, unstable groups. A
+routing rule an office can read and dispute is more honest than naming noise, so that
+is what this repository uses.
+
+![Cluster check](docs/figures/cluster_check.svg)
+
+**Why this student, and what would change the model's mind.** For every student
+contacted, PathFinder lists the reasons (exact contributions of the model) and up to
+three *what-if* plans. This is the idea behind DiCE: sparse, diverse counterfactuals. Each
+plan moves at most two levers, keeps whole numbers where they matter (absences,
+tutoring sessions), stays inside the range seen in the data, and brings the risk to the
+threshold. For a logistic model this is solved exactly
+([`counterfactual.py`](src/pathfinder/counterfactual.py)) instead of searched, and a
+test checks every plan against the model. Plans are what the model would need to see.
+They are not a promise that the change would keep the student enrolled.
+
+![A student card](docs/figures/student_card.svg)
+
+<!-- BEGIN:student_card -->
+- **Rank 1**: risk 0.99, expected grade 37, office: academic. What-ifs: assignment_completion_pct 39.7 → 100.0 and hours_self_study_week 4.7 → 23.4 (effort 4.03 SD, risk after 0.167); or assignment_completion_pct 39.7 → 100.0 and attendance_rate_pct 42.1 → 87.8 (effort 4.03 SD, risk after 0.167).
+- **Rank 10**: risk 0.90, expected grade 52, office: academic. What-ifs: assignment_completion_pct 25.9 → 63.0 and hours_self_study_week 6.9 → 16.5 (effort 2.31 SD, risk after 0.167); or assignment_completion_pct 25.9 → 63.1 and attendance_rate_pct 48.3 → 71.7 (effort 2.31 SD, risk after 0.167); or assignment_completion_pct 25.9 → 68.6 and quiz_average_pct 27.5 → 55.7 (effort 2.48 SD, risk after 0.167).
+- **Rank 25**: risk 0.68, expected grade 60, office: academic. What-ifs: assignment_completion_pct 43.7 → 66.3 and hours_self_study_week 4.4 → 10.2 (effort 1.41 SD, risk after 0.167); or assignment_completion_pct 43.7 → 66.3 and attendance_rate_pct 52.9 → 67.1 (effort 1.41 SD, risk after 0.167); or assignment_completion_pct 43.7 → 68.7 and internet_reliability_score 3.2 → 5.4 (effort 1.48 SD, risk after 0.167).
+<!-- END:student_card -->
+
+Effort is measured in standard deviations of the training data. For the highest-risk
+students every plan asks for values near the edge of what was observed, which is
+useful in itself: those files need a conversation, not a nudge.
+
+## How it was built: the questions that drove each change
+
+![Nine questions](docs/figures/questions.svg)
+
+**Feature engineering.** Every feature idea from the original notebook was turned into
+a question and answered by cross-validation on the training set only. Each variant was
+compared with the baseline on the same folds.
+
+![Feature-engineering questions](docs/figures/feature_questions.svg)
+
+<!-- BEGIN:feature_questions -->
+| question | from | grade: change in CV RMSE | dropout: change in CV AUC |
+|---|---|---|---|
+| Absences have a long right tail. Does log(1 + absences) fit better? | notebook cell 23 | +0.021 (hurts) | -0.0020 (hurts) |
+| Many students never use tutoring. Does a 'uses tutoring' flag add anything to the session count? | notebook cell 23 | +0.002 (hurts) | -0.0003 (hurts) |
+| The dormitory block failed a chi-square test. Is anything lost by dropping it? | notebook cell 27 | -0.020 (helps) | +0.0008 (helps) |
+| The notebook proposed six features as 'most of the explainable variance'. Is the compact set as good? | notebook cell 32 | +1.804 (hurts) | -0.0296 (hurts) |
+| Do pairwise interactions (e.g. attendance x assignments) capture something the additive model misses? | notebook cells 70, 81 | +0.228 (hurts) | -0.0281 (hurts) |
+
+Mean over 5 repeats of 5-fold CV, each variant on the same folds as the baseline. "helps" or "hurts" means the sign held in every repeat.
+<!-- END:feature_questions -->
+
+Only "drop the dormitory block" helps in every repeat, and only by a tiny margin. I
+found it *after* the one evaluation on the test set, so it is not applied: changing the
+model and scoring the same test set again would repeat the defect in
+[AUDIT item 5](AUDIT.md#5-the-test-set-was-used-to-choose-models). It is recorded for
+the next version, which will need fresh data to evaluate.
+
+**Model choice.**
+
+![Model choice](docs/figures/model_choice.svg)
 
 ## Read this first: the data is synthetic
 
@@ -151,14 +253,16 @@ The model predicts a mean risk close to the *training* dropout rate. The test co
 has more dropouts than the training cohort. A deployed model would need the base rate
 of the cohort it scores, and this repository does not estimate it.
 
-### What the "reasons" mean
+### What the "reasons" and "what-ifs" mean
 
 For each student, `pathfinder rank` lists the three features that raised the risk most.
 For a linear model these contributions are exact: coefficient × (value − average). They
 explain **the model**, not the student. "Low attendance raised the score" is not
-evidence that raising attendance would prevent dropout. The original notebook's
-counterfactuals ("what the student should change") made that causal step. This
-repository does not.
+evidence that raising attendance would prevent dropout. The what-if plans work the same
+way: they show what the model would need to see change, not what would change the
+outcome. The original notebook presented its counterfactuals as "what the student
+should change", which is a causal claim. Here the same kind of output carries its
+caveat on every card and in every file the command writes.
 
 ## Early warning on real data
 
@@ -183,9 +287,16 @@ pathfinder rank --train data/raw/track_f_student_success_train.csv \
                 --students new_students.csv --capacity 30 --out contact_list.csv
 ```
 
-The command writes the students sorted by risk. Each row has the dropout probability,
-the expected grade, a contact flag for the top `capacity` students, and the three
-largest reasons.
+The command writes the students sorted by risk. Each row has:
+
+- the dropout probability;
+- the expected grade;
+- a contact flag for the top `capacity` students;
+- the three largest reasons;
+- the office to refer to;
+- for contacted students, the smallest what-if plan with at most two levers.
+
+`--cost-ratio` sets the threshold the what-ifs aim for (default 5).
 
 ## Reproduce
 
@@ -208,8 +319,11 @@ OULAD CSVs in `data/raw/oulad/` (see [data/README.md](data/README.md)).
 | `src/pathfinder/evaluate.py` | repeated CV, bootstrap intervals, calibration |
 | `src/pathfinder/decide.py` | capacity (top k) and cost (Bayes threshold) policies |
 | `src/pathfinder/explain.py` | exact per-feature contributions of a linear model |
+| `src/pathfinder/counterfactual.py` | what-if plans (DiCE-style: sparse, diverse), solved exactly |
+| `src/pathfinder/segments.py` | routing to offices, and the K-means cluster check |
 | `src/pathfinder/oulad.py`, `early_warning.py` | OULAD snapshots at week w, forward-in-time evaluation |
 | `experiments/00`–`05` | synthetic check, selection, single test evaluation, audit, figures, OULAD |
+| `experiments/06`–`08` | feature questions, office views, story figures |
 | `experiments/render_readme.py` | fills this file's tables from `results/` |
 
 ## Limitations
@@ -222,3 +336,12 @@ OULAD CSVs in `data/raw/oulad/` (see [data/README.md](data/README.md)).
 - The cost ratio of 5 is an assumption. A real office would have to state its own.
 - The early-warning experiment has been checked on a fixture with OULAD's schema. It
   has not yet been run on the real files.
+- What-if plans and reasons describe the model. No intervention has been tested, so
+  nothing here shows that acting on a plan changes an outcome.
+- Most referrals go to academic support because assignment completion is the model's
+  strongest driver. On real data the mix would have to be re-examined.
+
+## License
+
+MIT, see [LICENSE](LICENSE). The course dataset is not included and is not covered by
+this license.

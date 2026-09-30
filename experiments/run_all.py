@@ -18,6 +18,9 @@ STEPS = [
     "02_final_test.py",
     "03_audit_original.py",
     "04_figures.py",
+    "06_feature_questions.py",
+    "07_admin_views.py",
+    "08_story_figures.py",
 ]
 for step in STEPS:
     print(f"== {step}")

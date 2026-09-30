@@ -72,6 +72,10 @@ def test_cli_ranks_and_marks_capacity(tmp_path: Path, capsys):
         >= ranked.loc[~ranked["contact"], "p_dropout"].max()
     )
     assert ranked["expected_grade"].between(0, 100).all()
+    assert ranked["office"].notna().all()
+    contacted = ranked[ranked["contact"]]
+    assert contacted["what_if"].fillna("").str.len().gt(0).all()
+    assert ranked.loc[~ranked["contact"], "what_if"].isna().all()
     assert "not a verdict" in capsys.readouterr().out
 
 

@@ -1,0 +1,2659 @@
+{
+  "threshold": 0.16666666666666666,
+  "k": 30,
+  "n": 300,
+  "cohort": [
+    {
+      "rank": 1,
+      "p": 0.9938317104760558,
+      "service": "academic",
+      "contact": true,
+      "flagged_cost": true
+    },
+    {
+      "rank": 2,
+      "p": 0.9870347816475353,
+      "service": "academic",
+      "contact": true,
+      "flagged_cost": true
+    },
+    {
+      "rank": 3,
+      "p": 0.9759809473631608,
+      "service": "academic",
+      "contact": true,
+      "flagged_cost": true
+    },
+    {
+      "rank": 4,
+      "p": 0.9746979322106202,
+      "service": "academic",
+      "contact": true,
+      "flagged_cost": true
+    },
+    {
+      "rank": 5,
+      "p": 0.9485273531706058,
+      "service": "engagement",
+      "contact": true,
+      "flagged_cost": true
+    },
+    {
+      "rank": 6,
+      "p": 0.9285075777764943,
+      "service": "academic",
+      "contact": true,
+      "flagged_cost": true
+    },
+    {
+      "rank": 7,
+      "p": 0.9242701923882171,
+      "service": "academic",
+      "contact": true,
+      "flagged_cost": true
+    },
+    {
+      "rank": 8,
+      "p": 0.9138213764805204,
+      "service": "financial",
+      "contact": true,
+      "flagged_cost": true
+    },
+    {
+      "rank": 9,
+      "p": 0.9131695383202039,
+      "service": "engagement",
+      "contact": true,
+      "flagged_cost": true
+    },
+    {
+      "rank": 10,
+      "p": 0.9045578456937075,
+      "service": "academic",
+      "contact": true,
+      "flagged_cost": true
+    },
+    {
+      "rank": 11,
+      "p": 0.8936464151655926,
+      "service": "engagement",
+      "contact": true,
+      "flagged_cost": true
+    },
+    {
+      "rank": 12,
+      "p": 0.8806046688618054,
+      "service": "academic",
+      "contact": true,
+      "flagged_cost": true
+    },
+    {
+      "rank": 13,
+      "p": 0.8793730647747539,
+      "service": "academic",
+      "contact": true,
+      "flagged_cost": true
+    },
+    {
+      "rank": 14,
+      "p": 0.8597581185093167,
+      "service": "engagement",
+      "contact": true,
+      "flagged_cost": true
+    },
+    {
+      "rank": 15,
+      "p": 0.859356176520103,
+      "service": "academic",
+      "contact": true,
+      "flagged_cost": true
+    },
+    {
+      "rank": 16,
+      "p": 0.8288873474766981,
+      "service": "engagement",
+      "contact": true,
+      "flagged_cost": true
+    },
+    {
+      "rank": 17,
+      "p": 0.8253475900665409,
+      "service": "academic",
+      "contact": true,
+      "flagged_cost": true
+    },
+    {
+      "rank": 18,
+      "p": 0.8203518425894019,
+      "service": "academic",
+      "contact": true,
+      "flagged_cost": true
+    },
+    {
+      "rank": 19,
+      "p": 0.7972140354344261,
+      "service": "academic",
+      "contact": true,
+      "flagged_cost": true
+    },
+    {
+      "rank": 20,
+      "p": 0.7881590432841129,
+      "service": "academic",
+      "contact": true,
+      "flagged_cost": true
+    },
+    {
+      "rank": 21,
+      "p": 0.7855986223911925,
+      "service": "academic",
+      "contact": true,
+      "flagged_cost": true
+    },
+    {
+      "rank": 22,
+      "p": 0.7664187015030245,
+      "service": "academic",
+      "contact": true,
+      "flagged_cost": true
+    },
+    {
+      "rank": 23,
+      "p": 0.7299669932448257,
+      "service": "academic",
+      "contact": true,
+      "flagged_cost": true
+    },
+    {
+      "rank": 24,
+      "p": 0.6863240931518478,
+      "service": "academic",
+      "contact": true,
+      "flagged_cost": true
+    },
+    {
+      "rank": 25,
+      "p": 0.6756620274260804,
+      "service": "academic",
+      "contact": true,
+      "flagged_cost": true
+    },
+    {
+      "rank": 26,
+      "p": 0.672680711446763,
+      "service": "academic",
+      "contact": true,
+      "flagged_cost": true
+    },
+    {
+      "rank": 27,
+      "p": 0.668661298177844,
+      "service": "academic",
+      "contact": true,
+      "flagged_cost": true
+    },
+    {
+      "rank": 28,
+      "p": 0.6539890959542196,
+      "service": "academic",
+      "contact": true,
+      "flagged_cost": true
+    },
+    {
+      "rank": 29,
+      "p": 0.6527707202059575,
+      "service": "academic",
+      "contact": true,
+      "flagged_cost": true
+    },
+    {
+      "rank": 30,
+      "p": 0.6330268870967365,
+      "service": "academic",
+      "contact": true,
+      "flagged_cost": true
+    },
+    {
+      "rank": 31,
+      "p": 0.6285005807348764,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": true
+    },
+    {
+      "rank": 32,
+      "p": 0.6132399317891237,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": true
+    },
+    {
+      "rank": 33,
+      "p": 0.5821422729931616,
+      "service": "engagement",
+      "contact": false,
+      "flagged_cost": true
+    },
+    {
+      "rank": 34,
+      "p": 0.5814536811534835,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": true
+    },
+    {
+      "rank": 35,
+      "p": 0.5723919740435199,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": true
+    },
+    {
+      "rank": 36,
+      "p": 0.540366209957844,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": true
+    },
+    {
+      "rank": 37,
+      "p": 0.5241900473533808,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": true
+    },
+    {
+      "rank": 38,
+      "p": 0.5219085455318896,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": true
+    },
+    {
+      "rank": 39,
+      "p": 0.5086509373639835,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": true
+    },
+    {
+      "rank": 40,
+      "p": 0.5086056472007271,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": true
+    },
+    {
+      "rank": 41,
+      "p": 0.5041983201189029,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": true
+    },
+    {
+      "rank": 42,
+      "p": 0.4958639490081927,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": true
+    },
+    {
+      "rank": 43,
+      "p": 0.4819644418644284,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": true
+    },
+    {
+      "rank": 44,
+      "p": 0.4779302431694241,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": true
+    },
+    {
+      "rank": 45,
+      "p": 0.46582400855846984,
+      "service": "financial",
+      "contact": false,
+      "flagged_cost": true
+    },
+    {
+      "rank": 46,
+      "p": 0.45156456180266413,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": true
+    },
+    {
+      "rank": 47,
+      "p": 0.44724912782381737,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": true
+    },
+    {
+      "rank": 48,
+      "p": 0.4261146501423252,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": true
+    },
+    {
+      "rank": 49,
+      "p": 0.4080832512375236,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": true
+    },
+    {
+      "rank": 50,
+      "p": 0.4049026397569172,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": true
+    },
+    {
+      "rank": 51,
+      "p": 0.40265929977082093,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": true
+    },
+    {
+      "rank": 52,
+      "p": 0.39152040277416755,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": true
+    },
+    {
+      "rank": 53,
+      "p": 0.3803216245734326,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": true
+    },
+    {
+      "rank": 54,
+      "p": 0.3561514084704714,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": true
+    },
+    {
+      "rank": 55,
+      "p": 0.35479821386626187,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": true
+    },
+    {
+      "rank": 56,
+      "p": 0.3492031558406824,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": true
+    },
+    {
+      "rank": 57,
+      "p": 0.32365873523252364,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": true
+    },
+    {
+      "rank": 58,
+      "p": 0.31961244101469577,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": true
+    },
+    {
+      "rank": 59,
+      "p": 0.3172101347194884,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": true
+    },
+    {
+      "rank": 60,
+      "p": 0.30354312806629336,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": true
+    },
+    {
+      "rank": 61,
+      "p": 0.3007952611493843,
+      "service": "financial",
+      "contact": false,
+      "flagged_cost": true
+    },
+    {
+      "rank": 62,
+      "p": 0.28461548602288567,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": true
+    },
+    {
+      "rank": 63,
+      "p": 0.26345377721671265,
+      "service": "engagement",
+      "contact": false,
+      "flagged_cost": true
+    },
+    {
+      "rank": 64,
+      "p": 0.2584044007451104,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": true
+    },
+    {
+      "rank": 65,
+      "p": 0.2502887372546991,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": true
+    },
+    {
+      "rank": 66,
+      "p": 0.24637834830211586,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": true
+    },
+    {
+      "rank": 67,
+      "p": 0.243697419442161,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": true
+    },
+    {
+      "rank": 68,
+      "p": 0.24189833816206766,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": true
+    },
+    {
+      "rank": 69,
+      "p": 0.23946319775829,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": true
+    },
+    {
+      "rank": 70,
+      "p": 0.2346011878200497,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": true
+    },
+    {
+      "rank": 71,
+      "p": 0.23271289742845772,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": true
+    },
+    {
+      "rank": 72,
+      "p": 0.22653297331645003,
+      "service": "engagement",
+      "contact": false,
+      "flagged_cost": true
+    },
+    {
+      "rank": 73,
+      "p": 0.20941945679093302,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": true
+    },
+    {
+      "rank": 74,
+      "p": 0.1952804079140882,
+      "service": "engagement",
+      "contact": false,
+      "flagged_cost": true
+    },
+    {
+      "rank": 75,
+      "p": 0.1947517376354339,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": true
+    },
+    {
+      "rank": 76,
+      "p": 0.18124477285107934,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": true
+    },
+    {
+      "rank": 77,
+      "p": 0.18045999789930015,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": true
+    },
+    {
+      "rank": 78,
+      "p": 0.17643506134783837,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": true
+    },
+    {
+      "rank": 79,
+      "p": 0.16762748181293216,
+      "service": "access",
+      "contact": false,
+      "flagged_cost": true
+    },
+    {
+      "rank": 80,
+      "p": 0.1481398186693357,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 81,
+      "p": 0.13446518271486163,
+      "service": "engagement",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 82,
+      "p": 0.13265190909614535,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 83,
+      "p": 0.12970572833972271,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 84,
+      "p": 0.12676447749301126,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 85,
+      "p": 0.12547959220320523,
+      "service": "financial",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 86,
+      "p": 0.11999898710516864,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 87,
+      "p": 0.11875939402072046,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 88,
+      "p": 0.11801954975506689,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 89,
+      "p": 0.11740292701558613,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 90,
+      "p": 0.1137130625819519,
+      "service": "engagement",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 91,
+      "p": 0.1108836704644146,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 92,
+      "p": 0.11072231730069554,
+      "service": "engagement",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 93,
+      "p": 0.10976839158080257,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 94,
+      "p": 0.10857962279299309,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 95,
+      "p": 0.10619534284552189,
+      "service": "engagement",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 96,
+      "p": 0.10519615209698228,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 97,
+      "p": 0.10432907901160587,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 98,
+      "p": 0.10267898989992717,
+      "service": "financial",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 99,
+      "p": 0.09835549189517266,
+      "service": "access",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 100,
+      "p": 0.09158901573911905,
+      "service": "financial",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 101,
+      "p": 0.07896443568630129,
+      "service": "engagement",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 102,
+      "p": 0.07882236961073395,
+      "service": "engagement",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 103,
+      "p": 0.07552376452787847,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 104,
+      "p": 0.07464694481503056,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 105,
+      "p": 0.07431474686210025,
+      "service": "access",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 106,
+      "p": 0.0734177978251911,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 107,
+      "p": 0.06723263019208425,
+      "service": "financial",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 108,
+      "p": 0.06600410342605834,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 109,
+      "p": 0.06598817263394928,
+      "service": "access",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 110,
+      "p": 0.0642391498047555,
+      "service": "access",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 111,
+      "p": 0.06022946777837318,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 112,
+      "p": 0.057675113635329706,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 113,
+      "p": 0.0544791444534542,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 114,
+      "p": 0.05435295325734569,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 115,
+      "p": 0.04929083361329153,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 116,
+      "p": 0.04857797701311198,
+      "service": "engagement",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 117,
+      "p": 0.046546431438861495,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 118,
+      "p": 0.04416747445136783,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 119,
+      "p": 0.04076956112182876,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 120,
+      "p": 0.040124333498334844,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 121,
+      "p": 0.03945832511054068,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 122,
+      "p": 0.038887249958532336,
+      "service": "engagement",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 123,
+      "p": 0.03557700334802376,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 124,
+      "p": 0.034999567525483846,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 125,
+      "p": 0.03337681549476526,
+      "service": "financial",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 126,
+      "p": 0.033017497307530966,
+      "service": "engagement",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 127,
+      "p": 0.03270873319952662,
+      "service": "access",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 128,
+      "p": 0.032294690760684405,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 129,
+      "p": 0.029637911861838884,
+      "service": "engagement",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 130,
+      "p": 0.029166325362716516,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 131,
+      "p": 0.028118946633738092,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 132,
+      "p": 0.02706176367313724,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 133,
+      "p": 0.02527948031837965,
+      "service": "financial",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 134,
+      "p": 0.02472571026541127,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 135,
+      "p": 0.024260955133883117,
+      "service": "access",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 136,
+      "p": 0.02085810330408193,
+      "service": "access",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 137,
+      "p": 0.020840632790216463,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 138,
+      "p": 0.02078582872974912,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 139,
+      "p": 0.019216197699668043,
+      "service": "engagement",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 140,
+      "p": 0.018079858931055348,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 141,
+      "p": 0.01720932684464393,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 142,
+      "p": 0.016739424381106167,
+      "service": "access",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 143,
+      "p": 0.01661909265888209,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 144,
+      "p": 0.01641434371769769,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 145,
+      "p": 0.016312918096125884,
+      "service": "engagement",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 146,
+      "p": 0.01610685848147754,
+      "service": "access",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 147,
+      "p": 0.01559184239719562,
+      "service": "engagement",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 148,
+      "p": 0.01518185245634949,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 149,
+      "p": 0.014754881628868234,
+      "service": "access",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 150,
+      "p": 0.01467538990887047,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 151,
+      "p": 0.014166318398462179,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 152,
+      "p": 0.013853080236852217,
+      "service": "financial",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 153,
+      "p": 0.013793612852099462,
+      "service": "engagement",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 154,
+      "p": 0.013006423727964034,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 155,
+      "p": 0.012446357545549177,
+      "service": "access",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 156,
+      "p": 0.012094763232105545,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 157,
+      "p": 0.011819280798452996,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 158,
+      "p": 0.01167426349254931,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 159,
+      "p": 0.010920478748972997,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 160,
+      "p": 0.010234427392445851,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 161,
+      "p": 0.010019786727764858,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 162,
+      "p": 0.008924099504335013,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 163,
+      "p": 0.008697093232689652,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 164,
+      "p": 0.008620648522260388,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 165,
+      "p": 0.008537558579160226,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 166,
+      "p": 0.008453053016823016,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 167,
+      "p": 0.008255455680642452,
+      "service": "access",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 168,
+      "p": 0.00824616075210486,
+      "service": "financial",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 169,
+      "p": 0.008244898993032889,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 170,
+      "p": 0.008156848043689938,
+      "service": "access",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 171,
+      "p": 0.007962432108540227,
+      "service": "engagement",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 172,
+      "p": 0.007530812528372631,
+      "service": "engagement",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 173,
+      "p": 0.007394739666346024,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 174,
+      "p": 0.00734266529396938,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 175,
+      "p": 0.0070383618715730584,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 176,
+      "p": 0.007033065418377468,
+      "service": "engagement",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 177,
+      "p": 0.006837339441973804,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 178,
+      "p": 0.006818258340950913,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 179,
+      "p": 0.006785080214697196,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 180,
+      "p": 0.006582465153476806,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 181,
+      "p": 0.0061499551638088965,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 182,
+      "p": 0.006105734577202417,
+      "service": "financial",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 183,
+      "p": 0.005640387668798017,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 184,
+      "p": 0.005380565682024338,
+      "service": "access",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 185,
+      "p": 0.004529682343589078,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 186,
+      "p": 0.004352023160394682,
+      "service": "access",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 187,
+      "p": 0.00426149282585025,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 188,
+      "p": 0.004257253794234944,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 189,
+      "p": 0.004239817509895501,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 190,
+      "p": 0.004055333137006297,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 191,
+      "p": 0.003803681202098583,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 192,
+      "p": 0.003774477329416665,
+      "service": "financial",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 193,
+      "p": 0.003713978947260863,
+      "service": "access",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 194,
+      "p": 0.003596494784103206,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 195,
+      "p": 0.0034387278719594004,
+      "service": "access",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 196,
+      "p": 0.003413009409372126,
+      "service": "financial",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 197,
+      "p": 0.0032852784852577532,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 198,
+      "p": 0.0032413720819416533,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 199,
+      "p": 0.0032366360618571993,
+      "service": "access",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 200,
+      "p": 0.003232525829081061,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 201,
+      "p": 0.003215850114268633,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 202,
+      "p": 0.0031962728591447107,
+      "service": "engagement",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 203,
+      "p": 0.003150872664320418,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 204,
+      "p": 0.002932327224880033,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 205,
+      "p": 0.0028970010532719595,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 206,
+      "p": 0.0028905462649716526,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 207,
+      "p": 0.002692435230159276,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 208,
+      "p": 0.002610027764594397,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 209,
+      "p": 0.002539451757049431,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 210,
+      "p": 0.002355362961334878,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 211,
+      "p": 0.00231756216912184,
+      "service": "financial",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 212,
+      "p": 0.0021891598625231154,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 213,
+      "p": 0.0021825012132666243,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 214,
+      "p": 0.0020371590275966994,
+      "service": "access",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 215,
+      "p": 0.002021057670655001,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 216,
+      "p": 0.001978050278863433,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 217,
+      "p": 0.001934110574040765,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 218,
+      "p": 0.0019192497754544555,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 219,
+      "p": 0.0018820812354293421,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 220,
+      "p": 0.001831346226656151,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 221,
+      "p": 0.0017646344308078989,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 222,
+      "p": 0.0017467168406962686,
+      "service": "access",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 223,
+      "p": 0.001724912895864068,
+      "service": "financial",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 224,
+      "p": 0.001724349870488898,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 225,
+      "p": 0.0016121884392543602,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 226,
+      "p": 0.0014565859820692957,
+      "service": "access",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 227,
+      "p": 0.0014551616055689049,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 228,
+      "p": 0.0012969588877898765,
+      "service": "access",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 229,
+      "p": 0.001292587881329465,
+      "service": "access",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 230,
+      "p": 0.001275951931819288,
+      "service": "access",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 231,
+      "p": 0.0012405558746191466,
+      "service": "access",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 232,
+      "p": 0.0012381813199435609,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 233,
+      "p": 0.0012306938943533585,
+      "service": "engagement",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 234,
+      "p": 0.0011924068598197727,
+      "service": "access",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 235,
+      "p": 0.0011647353318508123,
+      "service": "access",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 236,
+      "p": 0.0011375395999492616,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 237,
+      "p": 0.00112317761845856,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 238,
+      "p": 0.0011014310451797885,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 239,
+      "p": 0.0010567399982338583,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 240,
+      "p": 0.0010403878027098064,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 241,
+      "p": 0.0010331230151142145,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 242,
+      "p": 0.0009727951185609303,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 243,
+      "p": 0.0009723173018645722,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 244,
+      "p": 0.0009213379984623269,
+      "service": "access",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 245,
+      "p": 0.0008947916739986084,
+      "service": "engagement",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 246,
+      "p": 0.0008924582713259554,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 247,
+      "p": 0.000878752395281112,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 248,
+      "p": 0.0007719359421277601,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 249,
+      "p": 0.0007556101584970707,
+      "service": "access",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 250,
+      "p": 0.0007454888045623849,
+      "service": "engagement",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 251,
+      "p": 0.000743430803306746,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 252,
+      "p": 0.0006991092303001797,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 253,
+      "p": 0.0006989841549123562,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 254,
+      "p": 0.0006973022510389658,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 255,
+      "p": 0.0006905739162597745,
+      "service": "engagement",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 256,
+      "p": 0.0006664439510796951,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 257,
+      "p": 0.0006655821066091056,
+      "service": "financial",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 258,
+      "p": 0.0006641983335866012,
+      "service": "financial",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 259,
+      "p": 0.0006306766431697725,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 260,
+      "p": 0.0006262883996937374,
+      "service": "access",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 261,
+      "p": 0.0006092958500038208,
+      "service": "engagement",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 262,
+      "p": 0.0005971367817467998,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 263,
+      "p": 0.000561662315071079,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 264,
+      "p": 0.0005448523732892727,
+      "service": "financial",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 265,
+      "p": 0.000514672722476016,
+      "service": "engagement",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 266,
+      "p": 0.00047111747230233674,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 267,
+      "p": 0.00040815931237635976,
+      "service": "financial",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 268,
+      "p": 0.0003493548611372134,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 269,
+      "p": 0.00034485255806909315,
+      "service": "access",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 270,
+      "p": 0.000310456906126892,
+      "service": "access",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 271,
+      "p": 0.00030960565001553057,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 272,
+      "p": 0.00030886461927131164,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 273,
+      "p": 0.00030635822145684126,
+      "service": "financial",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 274,
+      "p": 0.00025804101998831616,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 275,
+      "p": 0.0002547647397851494,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 276,
+      "p": 0.0002473084851738251,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 277,
+      "p": 0.00020943825474793913,
+      "service": "access",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 278,
+      "p": 0.00019238311622748965,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 279,
+      "p": 0.00018736700353066596,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 280,
+      "p": 0.00017666899826134644,
+      "service": "financial",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 281,
+      "p": 0.00016553012647254565,
+      "service": "financial",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 282,
+      "p": 0.00015277693507221928,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 283,
+      "p": 0.00014787032262201716,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 284,
+      "p": 0.00014211698130252946,
+      "service": "access",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 285,
+      "p": 0.00012671392713814843,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 286,
+      "p": 0.00011532661420511308,
+      "service": "financial",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 287,
+      "p": 0.00010071500272872469,
+      "service": "financial",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 288,
+      "p": 9.732901224797351e-05,
+      "service": "financial",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 289,
+      "p": 6.596037100119568e-05,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 290,
+      "p": 5.7681595428727386e-05,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 291,
+      "p": 4.951686295231687e-05,
+      "service": "engagement",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 292,
+      "p": 3.482516192043895e-05,
+      "service": "engagement",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 293,
+      "p": 3.262233336912197e-05,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 294,
+      "p": 2.937469120449654e-05,
+      "service": "access",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 295,
+      "p": 1.800632247322471e-05,
+      "service": "engagement",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 296,
+      "p": 1.4039932568510769e-05,
+      "service": "financial",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 297,
+      "p": 1.0033391089881446e-05,
+      "service": "access",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 298,
+      "p": 7.343262024689254e-06,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 299,
+      "p": 5.404591699309416e-06,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": false
+    },
+    {
+      "rank": 300,
+      "p": 1.3912606018505147e-06,
+      "service": "academic",
+      "contact": false,
+      "flagged_cost": false
+    }
+  ],
+  "routing": [
+    {
+      "service": "engagement",
+      "label": "Engagement follow-up",
+      "in_capacity": 5,
+      "flagged_cost": 9,
+      "dropouts_among_flagged_cost": 6,
+      "mean_risk_flagged_cost": 0.6345998004536477
+    },
+    {
+      "service": "academic",
+      "label": "Academic support",
+      "in_capacity": 24,
+      "flagged_cost": 66,
+      "dropouts_among_flagged_cost": 39,
+      "mean_risk_flagged_cost": 0.5338578012655713
+    },
+    {
+      "service": "financial",
+      "label": "Financial aid",
+      "in_capacity": 1,
+      "flagged_cost": 3,
+      "dropouts_among_flagged_cost": 1,
+      "mean_risk_flagged_cost": 0.5601468820627916
+    },
+    {
+      "service": "access",
+      "label": "Digital & travel access",
+      "in_capacity": 0,
+      "flagged_cost": 1,
+      "dropouts_among_flagged_cost": 1,
+      "mean_risk_flagged_cost": 0.16762748181293216
+    },
+    {
+      "service": "none",
+      "label": "No dominant driver",
+      "in_capacity": 0,
+      "flagged_cost": 0,
+      "dropouts_among_flagged_cost": 0,
+      "mean_risk_flagged_cost": null
+    }
+  ],
+  "kmeans_check": {
+    "train_flagged_n": 267,
+    "train": [
+      {
+        "k": 2,
+        "silhouette": 0.15751968501176528,
+        "stability_ari": 0.6509858699664671
+      },
+      {
+        "k": 3,
+        "silhouette": 0.14545588242155022,
+        "stability_ari": 0.538537294686248
+      },
+      {
+        "k": 4,
+        "silhouette": 0.13671036517640164,
+        "stability_ari": 0.4318722360740271
+      },
+      {
+        "k": 5,
+        "silhouette": 0.12493195576308787,
+        "stability_ari": 0.3690090373210634
+      },
+      {
+        "k": 6,
+        "silhouette": 0.1274401300762523,
+        "stability_ari": 0.3387053193073367
+      }
+    ],
+    "test_flagged_n": 79,
+    "test": [
+      {
+        "k": 2,
+        "silhouette": 0.13115538342725247,
+        "stability_ari": 0.17640087436488208
+      },
+      {
+        "k": 3,
+        "silhouette": 0.15217394004406126,
+        "stability_ari": 0.26099984466812354
+      },
+      {
+        "k": 4,
+        "silhouette": 0.1568773379342143,
+        "stability_ari": 0.3636455089629546
+      },
+      {
+        "k": 5,
+        "silhouette": 0.14931326280958143,
+        "stability_ari": 0.37173854544364787
+      },
+      {
+        "k": 6,
+        "silhouette": 0.1532957296552164,
+        "stability_ari": 0.36162025636046735
+      }
+    ]
+  },
+  "cards": [
+    {
+      "rank": 1,
+      "p_dropout": 0.9938317104760558,
+      "expected_grade": 37.177753880640545,
+      "service": "academic",
+      "contributions": {
+        "assignment_completion_pct": 1.9941923567328037,
+        "attendance_rate_pct": 1.5617570935386753,
+        "prior_gpa_20": 1.5608477291773302,
+        "hours_self_study_week": 0.9946644216517493,
+        "financial_stress_score": 0.8932860870435589,
+        "absences_last30d": 0.8364918100514208,
+        "quiz_average_pct": 0.6927714472738189,
+        "commute_minutes": 0.3748815397997895,
+        "tutoring_sessions_month": 0.13654456695741962,
+        "dormitory_block_5": 0.09301832892595087,
+        "dormitory_block_3": 0.08801819119156434,
+        "dormitory_block_4": 0.07735863911412746,
+        "dormitory_block_2": 0.023069546599431938,
+        "internet_reliability_score": -0.08109906180147185,
+        "participation_score": -0.2837089532737703
+      },
+      "single_lever": [
+        {
+          "lever": "attendance_rate_pct",
+          "owner": "student",
+          "now": 42.09,
+          "needed": 161.73070174633042,
+          "change": 119.64070174633042,
+          "feasible": false
+        },
+        {
+          "lever": "assignment_completion_pct",
+          "owner": "student",
+          "now": 39.72,
+          "needed": 137.2537478712705,
+          "change": 97.53374787127049,
+          "feasible": false
+        },
+        {
+          "lever": "quiz_average_pct",
+          "owner": "student",
+          "now": 38.74,
+          "needed": 241.25754197631449,
+          "change": 202.51754197631448,
+          "feasible": false
+        },
+        {
+          "lever": "hours_self_study_week",
+          "owner": "student",
+          "now": 4.72,
+          "needed": 53.49624256709009,
+          "change": 48.776242567090094,
+          "feasible": false
+        },
+        {
+          "lever": "absences_last30d",
+          "owner": "student",
+          "now": 6.0,
+          "needed": -16.0,
+          "change": -22.0,
+          "feasible": false
+        },
+        {
+          "lever": "tutoring_sessions_month",
+          "owner": "institution",
+          "now": 0.0,
+          "needed": 61.0,
+          "change": 61.0,
+          "feasible": false
+        },
+        {
+          "lever": "internet_reliability_score",
+          "owner": "institution",
+          "now": 5.35,
+          "needed": 29.21900178619407,
+          "change": 23.86900178619407,
+          "feasible": false
+        },
+        {
+          "lever": "financial_stress_score",
+          "owner": "institution",
+          "now": 8.61,
+          "needed": -17.762864671081637,
+          "change": -26.372864671081636,
+          "feasible": false
+        }
+      ],
+      "plans": [
+        {
+          "steps": [
+            {
+              "lever": "assignment_completion_pct",
+              "owner": "student",
+              "now": 39.72,
+              "planned": 100.0,
+              "change": 60.279999999999994,
+              "effort_sd": 3.0533780264859605
+            },
+            {
+              "lever": "hours_self_study_week",
+              "owner": "student",
+              "now": 4.72,
+              "planned": 23.350452354815644,
+              "change": 18.630452354815645,
+              "effort_sd": 2.6293861960261995
+            }
+          ],
+          "effort_sd": 4.02948993552291,
+          "risk_after": 0.1666666666666656
+        },
+        {
+          "steps": [
+            {
+              "lever": "assignment_completion_pct",
+              "owner": "student",
+              "now": 39.72,
+              "planned": 100.0,
+              "change": 60.279999999999994,
+              "effort_sd": 3.0533780264859605
+            },
+            {
+              "lever": "attendance_rate_pct",
+              "owner": "student",
+              "now": 42.09,
+              "planned": 87.78766501623936,
+              "change": 45.697665016239355,
+              "effort_sd": 2.630450940392606
+            }
+          ],
+          "effort_sd": 4.030184800035806,
+          "risk_after": 0.16666666666666552
+        }
+      ]
+    },
+    {
+      "rank": 10,
+      "p_dropout": 0.9045578456937075,
+      "expected_grade": 52.4253203935373,
+      "service": "academic",
+      "contributions": {
+        "assignment_completion_pct": 2.9402951003544056,
+        "attendance_rate_pct": 1.215546266074119,
+        "quiz_average_pct": 1.0654851851379912,
+        "hours_self_study_week": 0.6914758126493127,
+        "prior_gpa_20": 0.5853441530233927,
+        "financial_stress_score": 0.44925876809160575,
+        "commute_minutes": 0.3482461119623158,
+        "absences_last30d": 0.21203236583251148,
+        "dormitory_block_5": 0.09301832892595087,
+        "dormitory_block_3": 0.08801819119156434,
+        "dormitory_block_2": 0.023069546599431938,
+        "participation_score": -0.06540204287625499,
+        "tutoring_sessions_month": -0.1964909622070185,
+        "dormitory_block_4": -0.3147819278238459,
+        "internet_reliability_score": -1.006241559960999
+      },
+      "single_lever": [
+        {
+          "lever": "assignment_completion_pct",
+          "owner": "student",
+          "now": 25.93,
+          "needed": 82.16790588978321,
+          "change": 56.237905889783214,
+          "feasible": true
+        },
+        {
+          "lever": "attendance_rate_pct",
+          "owner": "student",
+          "now": 48.28,
+          "needed": 117.264763451089,
+          "change": 68.984763451089,
+          "feasible": false
+        },
+        {
+          "lever": "quiz_average_pct",
+          "owner": "student",
+          "now": 27.46,
+          "needed": 144.23150437944955,
+          "change": 116.77150437944954,
+          "feasible": false
+        },
+        {
+          "lever": "hours_self_study_week",
+          "owner": "student",
+          "now": 6.93,
+          "needed": 35.054354892684785,
+          "change": 28.124354892684785,
+          "feasible": false
+        },
+        {
+          "lever": "absences_last30d",
+          "owner": "student",
+          "now": 4.0,
+          "needed": -9.0,
+          "change": -13.0,
+          "feasible": false
+        },
+        {
+          "lever": "tutoring_sessions_month",
+          "owner": "institution",
+          "now": 3.0,
+          "needed": 38.0,
+          "change": 35.0,
+          "feasible": false
+        },
+        {
+          "lever": "internet_reliability_score",
+          "owner": "institution",
+          "now": 8.65,
+          "needed": 22.412853426966986,
+          "change": 13.762853426966986,
+          "feasible": false
+        },
+        {
+          "lever": "financial_stress_score",
+          "owner": "institution",
+          "now": 6.86,
+          "needed": -8.346579402380936,
+          "change": -15.206579402380935,
+          "feasible": false
+        }
+      ],
+      "plans": [
+        {
+          "steps": [
+            {
+              "lever": "assignment_completion_pct",
+              "owner": "student",
+              "now": 25.93,
+              "planned": 63.04960781891053,
+              "change": 37.11960781891053,
+              "effort_sd": 1.8802288464837074
+            },
+            {
+              "lever": "hours_self_study_week",
+              "owner": "student",
+              "now": 6.93,
+              "planned": 16.490985448909406,
+              "change": 9.560985448909408,
+              "effort_sd": 1.349378033393356
+            }
+          ],
+          "effort_sd": 2.3143209786358447,
+          "risk_after": 0.16666666666666688
+        },
+        {
+          "steps": [
+            {
+              "lever": "assignment_completion_pct",
+              "owner": "student",
+              "now": 25.93,
+              "planned": 63.05982427368352,
+              "change": 37.12982427368352,
+              "effort_sd": 1.8807463431411795
+            },
+            {
+              "lever": "attendance_rate_pct",
+              "owner": "student",
+              "now": 48.28,
+              "planned": 71.71911049735961,
+              "change": 23.439110497359607,
+              "effort_sd": 1.3492030769588688
+            }
+          ],
+          "effort_sd": 2.314639442788919,
+          "risk_after": 0.16666666666666688
+        },
+        {
+          "steps": [
+            {
+              "lever": "assignment_completion_pct",
+              "owner": "student",
+              "now": 25.93,
+              "planned": 68.59090727499225,
+              "change": 42.66090727499225,
+              "effort_sd": 2.160913683865567
+            },
+            {
+              "lever": "quiz_average_pct",
+              "owner": "student",
+              "now": 27.46,
+              "planned": 55.651066650205166,
+              "change": 28.191066650205162,
+              "effort_sd": 1.2190577022962465
+            }
+          ],
+          "effort_sd": 2.4810581675255543,
+          "risk_after": 0.16666666666666677
+        }
+      ]
+    },
+    {
+      "rank": 25,
+      "p_dropout": 0.6756620274260804,
+      "expected_grade": 59.885547217506875,
+      "service": "academic",
+      "contributions": {
+        "assignment_completion_pct": 1.7183886562716837,
+        "hours_self_study_week": 1.0440526113535036,
+        "attendance_rate_pct": 0.9565872788106462,
+        "internet_reliability_score": 0.5328591415225779,
+        "prior_gpa_20": 0.3132299975699259,
+        "commute_minutes": 0.302433176081861,
+        "absences_last30d": 0.21203236583251148,
+        "quiz_average_pct": 0.12610118092891132,
+        "dormitory_block_3": 0.08801819119156434,
+        "dormitory_block_4": 0.07735863911412746,
+        "tutoring_sessions_month": 0.02553272390260692,
+        "dormitory_block_2": 0.023069546599431938,
+        "participation_score": -0.14202632268465445,
+        "financial_stress_score": -0.3119309215403147,
+        "dormitory_block_5": -0.3518519398503359
+      },
+      "single_lever": [
+        {
+          "lever": "attendance_rate_pct",
+          "owner": "student",
+          "now": 52.91,
+          "needed": 94.80731574716626,
+          "change": 41.89731574716626,
+          "feasible": true
+        },
+        {
+          "lever": "assignment_completion_pct",
+          "owner": "student",
+          "now": 43.74,
+          "needed": 77.89561904034439,
+          "change": 34.155619040344384,
+          "feasible": true
+        },
+        {
+          "lever": "hours_self_study_week",
+          "owner": "student",
+          "now": 4.36,
+          "needed": 21.44109034772045,
+          "change": 17.08109034772045,
+          "feasible": true
+        },
+        {
+          "lever": "quiz_average_pct",
+          "owner": "student",
+          "now": 55.89,
+          "needed": 126.81019084368079,
+          "change": 70.92019084368079,
+          "feasible": false
+        },
+        {
+          "lever": "absences_last30d",
+          "owner": "student",
+          "now": 4.0,
+          "needed": -4.0,
+          "change": -8.0,
+          "feasible": false
+        },
+        {
+          "lever": "tutoring_sessions_month",
+          "owner": "institution",
+          "now": 1.0,
+          "needed": 23.0,
+          "change": 22.0,
+          "feasible": false
+        },
+        {
+          "lever": "internet_reliability_score",
+          "owner": "institution",
+          "now": 3.16,
+          "needed": 11.518753248758188,
+          "change": 8.358753248758187,
+          "feasible": false
+        },
+        {
+          "lever": "financial_stress_score",
+          "owner": "institution",
+          "now": 3.86,
+          "needed": -5.375588074569986,
+          "change": -9.235588074569986,
+          "feasible": false
+        }
+      ],
+      "plans": [
+        {
+          "steps": [
+            {
+              "lever": "assignment_completion_pct",
+              "owner": "student",
+              "now": 43.74,
+              "planned": 66.2842815398293,
+              "change": 22.544281539829296,
+              "effort_sd": 1.1419411724722603
+            },
+            {
+              "lever": "hours_self_study_week",
+              "owner": "student",
+              "now": 4.36,
+              "planned": 10.166784080531572,
+              "change": 5.806784080531572,
+              "effort_sd": 0.81953339692838
+            }
+          ],
+          "effort_sd": 1.4055833771314636,
+          "risk_after": 0.16666666666666652
+        },
+        {
+          "steps": [
+            {
+              "lever": "assignment_completion_pct",
+              "owner": "student",
+              "now": 43.74,
+              "planned": 66.29048641768966,
+              "change": 22.550486417689665,
+              "effort_sd": 1.1422554697137315
+            },
+            {
+              "lever": "attendance_rate_pct",
+              "owner": "student",
+              "now": 52.91,
+              "planned": 67.14554657887419,
+              "change": 14.235546578874185,
+              "effort_sd": 0.8194271386097163
+            }
+          ],
+          "effort_sd": 1.4057767936557513,
+          "risk_after": 0.16666666666666652
+        },
+        {
+          "steps": [
+            {
+              "lever": "assignment_completion_pct",
+              "owner": "student",
+              "now": 43.74,
+              "planned": 68.73287011896726,
+              "change": 24.992870118967257,
+              "effort_sd": 1.265970146650169
+            },
+            {
+              "lever": "internet_reliability_score",
+              "owner": "institution",
+              "now": 3.16,
+              "planned": 5.402358928516272,
+              "change": 2.242358928516272,
+              "effort_sd": 0.7665284728762098
+            }
+          ],
+          "effort_sd": 1.4799480774471059,
+          "risk_after": 0.1666666666666666
+        }
+      ]
+    }
+  ],
+  "caveat": "What the model would need to see, not a guarantee: the model is correlational and was trained on synthetic data."
+}
