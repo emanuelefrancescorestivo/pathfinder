@@ -21,6 +21,7 @@ STEPS = [
     "06_feature_questions.py",
     "07_admin_views.py",
     "08_story_figures.py",
+    "10_system_diagram.py",
 ]
 for step in STEPS:
     print(f"== {step}")

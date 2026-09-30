@@ -35,6 +35,16 @@ is typed by hand.
 - **On real data (OULAD), the warning is modest and honest.** Who leaves within 4 weeks is ranked with AUC 0.64 to 0.78; 32% of withdrawals are flagged at least two weeks ahead, and 53% of those who leave from week 4 on (median lead 8 weeks). Trajectory features and a survival model were never clearly better than the plain weekly model.
 <!-- END:headline -->
 
+![What an advising office would run each week: this week's data, risk of leaving, who to see first, which office calls, the student card](docs/figures/system.svg)
+
+**Contents:** [for an advising office](#for-an-advising-office) ·
+[how it was built](#how-it-was-built-the-questions-that-drove-each-change) ·
+[the data is synthetic](#read-this-first-the-data-is-synthetic) ·
+[the grade model](#task-1-the-final-grade-is-censored-at-100) ·
+[dropout risk](#task-2-dropout-risk-and-what-an-office-can-do-with-it) ·
+[real data](#early-warning-on-real-data) · [use it](#use-it) ·
+[reproduce](#reproduce) · [limitations](#limitations)
+
 ## For an advising office
 
 **Who to see first.** The chart above ranks a held-out cohort of 300 students by
@@ -535,7 +545,10 @@ OULAD CSVs in `data/raw/oulad/` (see [data/README.md](data/README.md)).
 
 - **Original course project** ([`original/`](original/)): Emanuele Restivo, Marcos
   Almodovar and Yani Boukrif.
-- **This rebuild** (the package, experiments, audit and documentation): Emanuele Restivo.
+- **This rebuild** (the package, experiments, audit and documentation): Emanuele Restivo,
+  with an AI coding assistant (Claude Code) as a pair programmer; the commit history
+  shows it. The questions, the choice of what to test and what to report, and the
+  checks are mine.
 - **OULAD**: Kuzilek, Hlosta and Zdrahal (2017), *Scientific Data* 4, 170171, CC BY 4.0.
 
 ## License
