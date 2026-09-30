@@ -329,6 +329,31 @@ def early_warning() -> str:
     )
 
 
+def _real_data_bullet() -> list[str]:
+    t = j("time")
+    if t is None:
+        return []
+    s = t["lead_summary"]["landmark"]
+    late = t["lead_summary_late"]["landmark"]
+    comp = time_comparison(t)
+    better = sum(c["better"] for c in comp.values())
+    return [
+        "- **On real data (OULAD), the warning is modest and honest.** Who leaves within "
+        f"{t['horizon_weeks']} weeks is ranked with AUC "
+        f"{min(r['auc'] for r in t['table']):.2f} to {max(r['auc'] for r in t['table']):.2f}; "
+        f"{s['flagged_2_weeks_ahead']['value']:.0%} of withdrawals are flagged at least two "
+        "weeks ahead, and "
+        f"{late['flagged_2_weeks_ahead']['value']:.0%} of those who leave from week "
+        f"{t['late_from_week']} on (median lead {late['median_lead_weeks']:.0f} weeks). "
+        "Trajectory features and a survival model "
+        + (
+            "were never clearly better than the plain weekly model."
+            if better == 0
+            else f"were clearly better in {better} scorer-weeks."
+        )
+    ]
+
+
 def headline() -> str:
     s, f, a = j("selection"), j("final"), j("audit")
     if s is None or f is None or a is None:
@@ -360,9 +385,10 @@ def headline() -> str:
             "- **A usable answer for an advising office:** contacting the "
             f"{cap['k']} highest-risk of {d['n_test']} test students finds {found} of the "
             f"{d['n_dropouts']} dropouts (precision {ci(cap['precision_at_k'], 2)}).",
-            "- **All of it on synthetic data.** Several features are uniformly distributed "
-            "and dropouts have final grades. The early-warning question needs real data: "
-            "see *Early warning on real data* below.",
+            "- **The office views and the grade model run on synthetic data.** Several "
+            "features are uniformly distributed and dropouts have final grades; those "
+            "numbers describe the generator, not students.",
+            *_real_data_bullet(),
         ]
     )
 
@@ -450,6 +476,23 @@ def student_card() -> str:
     return "\n".join(lines)
 
 
+def time_comparison(t: dict[str, Any]) -> dict[str, dict[str, float]]:
+    """Each scorer against the weekly snapshot: mean AUC gap, and weeks it is clearly
+    better or worse (its interval entirely above or below the snapshot's point)."""
+    base = {r["week"]: r for r in t["table"] if r["scorer"] == "landmark"}
+    out = {}
+    for name in ("landmark+trajectory", "survival"):
+        rows = [r for r in t["table"] if r["scorer"] == name and r["week"] in base]
+        gaps = [r["auc"] - base[r["week"]]["auc"] for r in rows]
+        out[name] = {
+            "mean_gap": sum(gaps) / len(gaps),
+            "better": sum(r["auc_low"] > base[r["week"]]["auc_high"] for r in rows),
+            "worse": sum(r["auc_high"] < base[r["week"]]["auc_low"] for r in rows),
+            "weeks": len(rows),
+        }
+    return out
+
+
 def time_block() -> str:
     t = j("time")
     if t is None:
@@ -469,32 +512,51 @@ def time_block() -> str:
         ]
         for r in t["table"]
     ]
-    lead = [
-        [
-            name,
-            str(s["withdrawals"]),
-            ci(s["flagged_before_withdrawal"], 2),
-            ci(s["flagged_2_weeks_ahead"], 2),
-            "-" if s["median_lead_weeks"] is None else f"{s['median_lead_weeks']:.0f}",
+    aucs = [r["auc"] for r in t["table"]]
+
+    def lead_rows(summ: dict[str, Any]) -> list[list[str]]:
+        return [
+            [
+                name,
+                str(s["withdrawals"]),
+                ci(s["flagged_before_withdrawal"], 2),
+                ci(s["flagged_2_weeks_ahead"], 2),
+                "-" if s["median_lead_weeks"] is None else f"{s['median_lead_weeks']:.0f}",
+            ]
+            for name, s in summ.items()
         ]
-        for name, s in t["lead_summary"].items()
+
+    head = [
+        "scorer",
+        "withdrawals",
+        "flagged by the week of withdrawal",
+        "flagged 2+ weeks ahead",
+        "median lead (weeks)",
     ]
+    comp = time_comparison(t)
+    comp_txt = "; ".join(
+        f"{n}: mean AUC gap {c['mean_gap']:+.3f}, clearly better in {c['better']} of "
+        f"{c['weeks']} weeks, clearly worse in {c['worse']}"
+        for n, c in comp.items()
+    )
+    late = t.get("lead_summary_late")
+    late_txt = ""
+    if late:
+        late_txt = (
+            f"\n\nStudents who withdrew in week {t['late_from_week']} or later (the ones "
+            "for whom two weeks of warning was possible at all):\n\n" + table(head, lead_rows(late))
+        )
     return (
         f"Horizon {t['horizon_weeks']} weeks, capacity {t['capacity_share']:.0%} of each "
         f"week's cohort. Trained on {', '.join(t['train_presentations'])}; tested on "
-        f"{', '.join(t['test_presentations'])}.\n\n"
+        f"{', '.join(t['test_presentations'])}. AUC ranges from {min(aucs):.2f} to "
+        f"{max(aucs):.2f} across weeks and scorers.\n\n"
+        f"Against the weekly snapshot model ({comp_txt}).\n\n"
         + "![AUC by week](docs/figures/time_auc.svg)\n\n"
         + "![Lead time](docs/figures/lead_time.svg)\n\n"
-        + table(
-            [
-                "scorer",
-                "withdrawals in test",
-                "flagged by the week of withdrawal",
-                "flagged 2+ weeks ahead",
-                "median lead (weeks)",
-            ],
-            lead,
-        )
+        + "All withdrawals during the scored weeks:\n\n"
+        + table(head, lead_rows(t["lead_summary"]))
+        + late_txt
         + "\n\n<details><summary>Week-by-week table</summary>\n\n"
         + table(
             [

@@ -99,6 +99,26 @@ def title(ax: plt.Axes, text: str, sub: str | None = None) -> None:
 
 
 syn, sel, fin, aud = load("synthetic"), load("selection"), load("final"), load("audit")
+_time_path = ROOT / "results" / "time.json"
+if _time_path.exists():
+    _t = load("time")
+    _s = _t["lead_summary"]["landmark"]
+    _aucs = [r["auc"] for r in _t["table"]]
+    time_step = (
+        "How early can we warn?",
+        f"OULAD, week by week: AUC {min(_aucs):.2f}-{max(_aucs):.2f} for leaving within "
+        f"{_t['horizon_weeks']} weeks; {_s['flagged_2_weeks_ahead']['value']:.0%} of "
+        "withdrawals flagged 2+ weeks ahead. Trends and survival add nothing clear.",
+        "Keep the plain weekly model; state how little warning there is.",
+        "kept",
+    )
+else:
+    time_step = (
+        "How early can we warn?",
+        "The course data has no time axis.",
+        "Weekly snapshots on OULAD (pending the data).",
+        "open",
+    )
 fq, adm = load("feature_questions"), load("admin_views")
 
 # -- 1. The questions that shaped the project ---------------------------------------
@@ -162,12 +182,7 @@ steps = [
         "Route by each student's first reason.",
         "changed",
     ),
-    (
-        "How early can we warn?",
-        "The course data has no time axis.",
-        "Weekly snapshots on OULAD (pending the data).",
-        "open",
-    ),
+    time_step,
 ]
 CHIP = {
     "changed": (BLUE, "changed"),

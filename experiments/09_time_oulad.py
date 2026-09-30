@@ -38,6 +38,10 @@ scores, labels = weekly_scores(d, WEEKS, horizon=HORIZON)
 table = horizon_table(scores, labels, capacity_share=CAPACITY)
 leads = {name: lead_times(d, by_week, capacity_share=CAPACITY) for name, by_week in scores.items()}
 summary = {name: lead_summary(t) for name, t in leads.items()}
+# Withdrawals in weeks 0-3 cannot have two weeks of warning inside the scored weeks; report
+# the later ones separately so the early rush does not hide (or flatter) the result.
+LATE = 4
+summary_late = {name: lead_summary(t[t["withdrawal_week"] >= LATE]) for name, t in leads.items()}
 print(table.round(3).to_string(index=False))
 for name, s in summary.items():
     print(name, s)
@@ -52,6 +56,8 @@ save(
         "capacity_share": CAPACITY,
         "table": table.to_dict(orient="records"),
         "lead_summary": summary,
+        "late_from_week": LATE,
+        "lead_summary_late": summary_late,
         "lead_histogram": {
             name: t["lead_weeks"].fillna(-1).astype(int).value_counts().sort_index().to_dict()
             for name, t in leads.items()

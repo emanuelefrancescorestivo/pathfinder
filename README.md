@@ -10,10 +10,12 @@ interval, and has been checked against a held-out cohort exactly once.
 
 ![This term's caseload](docs/figures/caseload.svg)
 
-> **Read this first.** The data is the synthetic dataset supplied with a course, not
-> real students (see [below](#read-this-first-the-data-is-synthetic)). The system and
-> the method are what this repository demonstrates; the numbers describe the generator,
-> not students.
+> **Read this first.** Two datasets. The office views, the grade model and the audit
+> use the synthetic dataset supplied with a course, not real students (see
+> [below](#read-this-first-the-data-is-synthetic)); there the numbers describe the
+> generator. The question of *how early* a warning can come is answered on real data:
+> 32,593 registrations from the Open University (see
+> [Early warning on real data](#early-warning-on-real-data)).
 
 PathFinder predicts two things about a first-year university student: the final grade,
 and the risk of dropping out. It started as my Machine Learning course project in the
@@ -28,7 +30,8 @@ is typed by hand.
 - **Modelling the grade ceiling helps where it matters.** A Tobit model cuts the cross-validated RMSE on students below 65 from 9.28 to 8.19 points and their mean over-prediction from 7.0 to 4.7. On the 300-student test set the overall RMSE difference is -0.16 [-0.38, 0.09]: the same direction, but the interval includes zero.
 - **The original validation over-promised.** Oversampling before cross-validation reported precision 0.81; the test set delivered 0.51.
 - **A usable answer for an advising office:** contacting the 30 highest-risk of 300 test students finds 22 of the 57 dropouts (precision 0.73 [0.60, 0.90]).
-- **All of it on synthetic data.** Several features are uniformly distributed and dropouts have final grades. The early-warning question needs real data: see *Early warning on real data* below.
+- **The office views and the grade model run on synthetic data.** Several features are uniformly distributed and dropouts have final grades; those numbers describe the generator, not students.
+- **On real data (OULAD), the warning is modest and honest.** Who leaves within 4 weeks is ranked with AUC 0.64 to 0.78; 32% of withdrawals are flagged at least two weeks ahead, and 53% of those who leave from week 4 on (median lead 8 weeks). Trajectory features and a survival model were never clearly better than the plain weekly model.
 <!-- END:headline -->
 
 ## For an advising office
@@ -268,16 +271,42 @@ caveat on every card and in every file the command writes.
 
 The original claims "early warning", but the course data has no time dimension: the
 notebook cannot say *when* a prediction would be available. The
-[Open University Learning Analytics Dataset](https://analyse.kmi.open.ac.uk/open_dataset)
-(OULAD; Kuzilek, Hlosta and Zdrahal, *Scientific Data*, 2017) records daily activity on
-the course website and assessment submissions for 22 course presentations.
+[Open University Learning Analytics Dataset](https://archive.ics.uci.edu/dataset/349/open+university+learning+analytics+dataset)
+(OULAD; Kuzilek, Hlosta and Zdrahal, *Scientific Data*, 2017; CC BY 4.0) records daily
+activity on the course website and assessment submissions for 22 course presentations
+and 32,593 student registrations. The local copy is checked against those published
+counts ([data/README.md](data/README.md)).
 [`src/pathfinder/early_warning.py`](src/pathfinder/early_warning.py) builds, for each
 week w, the students still registered on day 7w. It uses only information dated before
 that day, trains on the 2013 and 2014B presentations and tests on 2014J. A test appends
 future clicks and submissions and checks that no feature moves.
 
+First, the long-range question: among students still registered at week w, who will
+*ever* withdraw from the module?
+
 <!-- BEGIN:early_warning -->
-_Not run yet. The OULAD files were not reachable where this was written; see data/README.md, then run experiments/05_early_warning_oulad.py._
+Trained on 2013B, 2013J, 2014B; tested on 2014J. Behaviour and course context only.
+
+| week | model | students still registered | withdrawal rate | AUC | precision@10% | recall@10% |
+|---|---|---|---|---|---|---|
+| 0 | Logistic | 10365 | 0.283 | 0.680 [0.669, 0.692] | 0.53 | 0.19 |
+| 0 | Gradient boosting | 10365 | 0.283 | 0.680 [0.669, 0.692] | 0.55 | 0.20 |
+| 2 | Logistic | 9363 | 0.206 | 0.663 [0.649, 0.677] | 0.42 | 0.20 |
+| 2 | Gradient boosting | 9363 | 0.206 | 0.665 [0.651, 0.679] | 0.43 | 0.21 |
+| 4 | Logistic | 9219 | 0.194 | 0.660 [0.646, 0.674] | 0.30 | 0.15 |
+| 4 | Gradient boosting | 9219 | 0.194 | 0.686 [0.671, 0.700] | 0.49 | 0.25 |
+| 6 | Logistic | 9045 | 0.178 | 0.675 [0.659, 0.689] | 0.27 | 0.15 |
+| 6 | Gradient boosting | 9045 | 0.178 | 0.701 [0.686, 0.717] | 0.48 | 0.27 |
+| 8 | Logistic | 8881 | 0.163 | 0.698 [0.684, 0.713] | 0.41 | 0.25 |
+| 8 | Gradient boosting | 8881 | 0.163 | 0.703 [0.688, 0.717] | 0.38 | 0.23 |
+| 10 | Logistic | 8705 | 0.146 | 0.699 [0.684, 0.714] | 0.34 | 0.23 |
+| 10 | Gradient boosting | 8705 | 0.146 | 0.703 [0.688, 0.718] | 0.31 | 0.21 |
+| 12 | Logistic | 8572 | 0.133 | 0.695 [0.679, 0.711] | 0.31 | 0.23 |
+| 12 | Gradient boosting | 8572 | 0.133 | 0.695 [0.679, 0.710] | 0.28 | 0.21 |
+| 16 | Logistic | 8320 | 0.106 | 0.727 [0.710, 0.746] | 0.26 | 0.24 |
+| 16 | Gradient boosting | 8320 | 0.106 | 0.745 [0.729, 0.762] | 0.28 | 0.27 |
+| 20 | Logistic | 8108 | 0.083 | 0.712 [0.695, 0.731] | 0.21 | 0.25 |
+| 20 | Gradient boosting | 8108 | 0.083 | 0.742 [0.725, 0.760] | 0.22 | 0.27 |
 <!-- END:early_warning -->
 
 ### Who leaves in the next four weeks?
@@ -303,11 +332,137 @@ withdrew, how many weeks before leaving they first appeared in the top 10% of th
 week's list. Intervals resample students, not weekly rows, because the same student
 appears every week.
 
+Data notes: 93 students recorded as withdrawn have no withdrawal date and are treated as
+censored in the time-to-event analysis; 9 students unregistered without being recorded
+as withdrawn are counted as leaving on the day they unregistered.
+
 One limit no offline evaluation removes: if an office acts on the list, it changes the
 outcomes the model was trained to predict.
 
 <!-- BEGIN:time -->
-_Not run yet: needs the OULAD files in data/raw/oulad/ (see data/README.md), then experiments/09_time_oulad.py._
+Horizon 4 weeks, capacity 10% of each week's cohort. Trained on 2013B, 2013J, 2014B; tested on 2014J. AUC ranges from 0.64 to 0.78 across weeks and scorers.
+
+Against the weekly snapshot model (landmark+trajectory: mean AUC gap +0.002, clearly better in 0 of 31 weeks, clearly worse in 0; survival: mean AUC gap -0.001, clearly better in 0 of 31 weeks, clearly worse in 2).
+
+![AUC by week](docs/figures/time_auc.svg)
+
+![Lead time](docs/figures/lead_time.svg)
+
+All withdrawals during the scored weeks:
+
+| scorer | withdrawals | flagged by the week of withdrawal | flagged 2+ weeks ahead | median lead (weeks) |
+|---|---|---|---|---|
+| landmark | 2766 | 0.51 [0.49, 0.52] | 0.32 [0.30, 0.34] | 4 |
+| landmark+trajectory | 2766 | 0.52 [0.51, 0.54] | 0.34 [0.32, 0.36] | 4 |
+| survival | 2766 | 0.50 [0.49, 0.52] | 0.30 [0.28, 0.32] | 3 |
+
+Students who withdrew in week 4 or later (the ones for whom two weeks of warning was possible at all):
+
+| scorer | withdrawals | flagged by the week of withdrawal | flagged 2+ weeks ahead | median lead (weeks) |
+|---|---|---|---|---|
+| landmark | 1620 | 0.60 [0.57, 0.62] | 0.53 [0.51, 0.55] | 8 |
+| landmark+trajectory | 1620 | 0.62 [0.60, 0.65] | 0.56 [0.53, 0.58] | 8 |
+| survival | 1620 | 0.55 [0.52, 0.57] | 0.49 [0.47, 0.52] | 8 |
+
+<details><summary>Week-by-week table</summary>
+
+| week | scorer | students registered | withdrawals within horizon | AUC | precision@10% | mean predicted / observed |
+|---|---|---|---|---|---|---|
+| 0 | landmark | 10365 | 1146 | 0.738 [0.724, 0.752] | 0.32 | 0.067 / 0.111 |
+| 1 | landmark | 10204 | 1102 | 0.753 [0.738, 0.767] | 0.31 | 0.055 / 0.108 |
+| 2 | landmark | 9363 | 318 | 0.729 [0.701, 0.759] | 0.10 | 0.049 / 0.034 |
+| 3 | landmark | 9299 | 317 | 0.700 [0.673, 0.730] | 0.09 | 0.060 / 0.034 |
+| 4 | landmark | 9219 | 338 | 0.711 [0.682, 0.739] | 0.10 | 0.042 / 0.037 |
+| 5 | landmark | 9102 | 308 | 0.722 [0.691, 0.755] | 0.11 | 0.038 / 0.034 |
+| 6 | landmark | 9045 | 340 | 0.726 [0.695, 0.757] | 0.12 | 0.036 / 0.038 |
+| 7 | landmark | 8982 | 371 | 0.720 [0.692, 0.749] | 0.12 | 0.032 / 0.041 |
+| 8 | landmark | 8881 | 309 | 0.753 [0.718, 0.784] | 0.15 | 0.025 / 0.035 |
+| 9 | landmark | 8794 | 261 | 0.730 [0.694, 0.764] | 0.11 | 0.025 / 0.030 |
+| 10 | landmark | 8705 | 232 | 0.727 [0.692, 0.761] | 0.10 | 0.024 / 0.027 |
+| 11 | landmark | 8611 | 204 | 0.718 [0.681, 0.754] | 0.08 | 0.029 / 0.024 |
+| 12 | landmark | 8572 | 252 | 0.716 [0.685, 0.747] | 0.09 | 0.031 / 0.029 |
+| 13 | landmark | 8533 | 270 | 0.701 [0.671, 0.732] | 0.09 | 0.033 / 0.032 |
+| 14 | landmark | 8473 | 264 | 0.717 [0.685, 0.746] | 0.09 | 0.031 / 0.031 |
+| 15 | landmark | 8407 | 248 | 0.735 [0.705, 0.766] | 0.08 | 0.029 / 0.029 |
+| 16 | landmark | 8320 | 212 | 0.755 [0.722, 0.789] | 0.09 | 0.025 / 0.025 |
+| 17 | landmark | 8263 | 208 | 0.724 [0.686, 0.757] | 0.07 | 0.023 / 0.025 |
+| 18 | landmark | 8209 | 237 | 0.682 [0.647, 0.716] | 0.07 | 0.024 / 0.029 |
+| 19 | landmark | 8159 | 280 | 0.674 [0.647, 0.705] | 0.07 | 0.025 / 0.034 |
+| 20 | landmark | 8108 | 304 | 0.722 [0.693, 0.747] | 0.11 | 0.028 / 0.037 |
+| 21 | landmark | 8055 | 313 | 0.726 [0.699, 0.754] | 0.11 | 0.025 / 0.039 |
+| 22 | landmark | 7972 | 255 | 0.723 [0.692, 0.754] | 0.10 | 0.024 / 0.032 |
+| 23 | landmark | 7879 | 188 | 0.777 [0.745, 0.810] | 0.09 | 0.024 / 0.024 |
+| 24 | landmark | 7804 | 141 | 0.767 [0.733, 0.800] | 0.06 | 0.021 / 0.018 |
+| 25 | landmark | 7742 | 108 | 0.771 [0.736, 0.806] | 0.04 | 0.020 / 0.014 |
+| 26 | landmark | 7717 | 102 | 0.730 [0.689, 0.770] | 0.03 | 0.019 / 0.013 |
+| 27 | landmark | 7691 | 92 | 0.727 [0.679, 0.769] | 0.02 | 0.020 / 0.012 |
+| 28 | landmark | 7663 | 79 | 0.730 [0.673, 0.778] | 0.03 | 0.021 / 0.010 |
+| 29 | landmark | 7634 | 72 | 0.716 [0.656, 0.774] | 0.03 | 0.022 / 0.009 |
+| 30 | landmark | 7615 | 85 | 0.756 [0.702, 0.806] | 0.05 | 0.020 / 0.011 |
+| 0 | landmark+trajectory | 10365 | 1146 | 0.739 [0.725, 0.754] | 0.32 | 0.067 / 0.111 |
+| 1 | landmark+trajectory | 10204 | 1102 | 0.752 [0.737, 0.766] | 0.31 | 0.055 / 0.108 |
+| 2 | landmark+trajectory | 9363 | 318 | 0.728 [0.700, 0.758] | 0.11 | 0.049 / 0.034 |
+| 3 | landmark+trajectory | 9299 | 317 | 0.697 [0.671, 0.727] | 0.08 | 0.060 / 0.034 |
+| 4 | landmark+trajectory | 9219 | 338 | 0.708 [0.679, 0.736] | 0.09 | 0.042 / 0.037 |
+| 5 | landmark+trajectory | 9102 | 308 | 0.724 [0.692, 0.757] | 0.11 | 0.038 / 0.034 |
+| 6 | landmark+trajectory | 9045 | 340 | 0.728 [0.697, 0.759] | 0.12 | 0.036 / 0.038 |
+| 7 | landmark+trajectory | 8982 | 371 | 0.718 [0.691, 0.748] | 0.13 | 0.032 / 0.041 |
+| 8 | landmark+trajectory | 8881 | 309 | 0.749 [0.713, 0.781] | 0.15 | 0.026 / 0.035 |
+| 9 | landmark+trajectory | 8794 | 261 | 0.729 [0.694, 0.762] | 0.11 | 0.025 / 0.030 |
+| 10 | landmark+trajectory | 8705 | 232 | 0.732 [0.696, 0.766] | 0.11 | 0.024 / 0.027 |
+| 11 | landmark+trajectory | 8611 | 204 | 0.722 [0.684, 0.758] | 0.08 | 0.029 / 0.024 |
+| 12 | landmark+trajectory | 8572 | 252 | 0.713 [0.679, 0.744] | 0.08 | 0.032 / 0.029 |
+| 13 | landmark+trajectory | 8533 | 270 | 0.702 [0.674, 0.732] | 0.08 | 0.034 / 0.032 |
+| 14 | landmark+trajectory | 8473 | 264 | 0.712 [0.679, 0.740] | 0.08 | 0.030 / 0.031 |
+| 15 | landmark+trajectory | 8407 | 248 | 0.731 [0.699, 0.763] | 0.09 | 0.028 / 0.029 |
+| 16 | landmark+trajectory | 8320 | 212 | 0.749 [0.715, 0.782] | 0.09 | 0.024 / 0.025 |
+| 17 | landmark+trajectory | 8263 | 208 | 0.719 [0.681, 0.753] | 0.08 | 0.023 / 0.025 |
+| 18 | landmark+trajectory | 8209 | 237 | 0.693 [0.655, 0.727] | 0.09 | 0.024 / 0.029 |
+| 19 | landmark+trajectory | 8159 | 280 | 0.672 [0.643, 0.703] | 0.08 | 0.024 / 0.034 |
+| 20 | landmark+trajectory | 8108 | 304 | 0.715 [0.687, 0.743] | 0.11 | 0.027 / 0.037 |
+| 21 | landmark+trajectory | 8055 | 313 | 0.731 [0.705, 0.758] | 0.11 | 0.026 / 0.039 |
+| 22 | landmark+trajectory | 7972 | 255 | 0.737 [0.707, 0.766] | 0.10 | 0.024 / 0.032 |
+| 23 | landmark+trajectory | 7879 | 188 | 0.777 [0.743, 0.809] | 0.09 | 0.024 / 0.024 |
+| 24 | landmark+trajectory | 7804 | 141 | 0.764 [0.730, 0.799] | 0.06 | 0.021 / 0.018 |
+| 25 | landmark+trajectory | 7742 | 108 | 0.781 [0.749, 0.814] | 0.04 | 0.020 / 0.014 |
+| 26 | landmark+trajectory | 7717 | 102 | 0.744 [0.702, 0.785] | 0.04 | 0.019 / 0.013 |
+| 27 | landmark+trajectory | 7691 | 92 | 0.736 [0.689, 0.779] | 0.03 | 0.020 / 0.012 |
+| 28 | landmark+trajectory | 7663 | 79 | 0.737 [0.681, 0.785] | 0.04 | 0.021 / 0.010 |
+| 29 | landmark+trajectory | 7634 | 72 | 0.731 [0.673, 0.787] | 0.03 | 0.022 / 0.009 |
+| 30 | landmark+trajectory | 7615 | 85 | 0.774 [0.722, 0.818] | 0.04 | 0.020 / 0.011 |
+| 0 | survival | 10365 | 1146 | 0.739 [0.724, 0.754] | 0.33 | 0.093 / 0.111 |
+| 1 | survival | 10204 | 1102 | 0.759 [0.744, 0.774] | 0.37 | 0.052 / 0.108 |
+| 2 | survival | 9363 | 318 | 0.658 [0.626, 0.689] | 0.09 | 0.041 / 0.034 |
+| 3 | survival | 9299 | 317 | 0.637 [0.610, 0.667] | 0.06 | 0.042 / 0.034 |
+| 4 | survival | 9219 | 338 | 0.679 [0.652, 0.707] | 0.08 | 0.039 / 0.037 |
+| 5 | survival | 9102 | 308 | 0.717 [0.686, 0.747] | 0.09 | 0.040 / 0.034 |
+| 6 | survival | 9045 | 340 | 0.716 [0.688, 0.743] | 0.12 | 0.037 / 0.038 |
+| 7 | survival | 8982 | 371 | 0.729 [0.703, 0.755] | 0.12 | 0.037 / 0.041 |
+| 8 | survival | 8881 | 309 | 0.746 [0.715, 0.776] | 0.14 | 0.031 / 0.035 |
+| 9 | survival | 8794 | 261 | 0.747 [0.715, 0.778] | 0.12 | 0.029 / 0.030 |
+| 10 | survival | 8705 | 232 | 0.748 [0.716, 0.779] | 0.10 | 0.027 / 0.027 |
+| 11 | survival | 8611 | 204 | 0.716 [0.677, 0.752] | 0.09 | 0.029 / 0.024 |
+| 12 | survival | 8572 | 252 | 0.716 [0.684, 0.749] | 0.09 | 0.034 / 0.029 |
+| 13 | survival | 8533 | 270 | 0.707 [0.677, 0.737] | 0.09 | 0.033 / 0.032 |
+| 14 | survival | 8473 | 264 | 0.720 [0.687, 0.750] | 0.10 | 0.029 / 0.031 |
+| 15 | survival | 8407 | 248 | 0.732 [0.701, 0.763] | 0.10 | 0.029 / 0.029 |
+| 16 | survival | 8320 | 212 | 0.740 [0.705, 0.771] | 0.07 | 0.027 / 0.025 |
+| 17 | survival | 8263 | 208 | 0.714 [0.679, 0.746] | 0.07 | 0.027 / 0.025 |
+| 18 | survival | 8209 | 237 | 0.699 [0.666, 0.729] | 0.08 | 0.029 / 0.029 |
+| 19 | survival | 8159 | 280 | 0.717 [0.690, 0.744] | 0.09 | 0.028 / 0.034 |
+| 20 | survival | 8108 | 304 | 0.745 [0.719, 0.768] | 0.10 | 0.026 / 0.037 |
+| 21 | survival | 8055 | 313 | 0.747 [0.720, 0.771] | 0.11 | 0.022 / 0.039 |
+| 22 | survival | 7972 | 255 | 0.757 [0.729, 0.784] | 0.10 | 0.021 / 0.032 |
+| 23 | survival | 7879 | 188 | 0.774 [0.742, 0.809] | 0.09 | 0.022 / 0.024 |
+| 24 | survival | 7804 | 141 | 0.781 [0.744, 0.815] | 0.07 | 0.021 / 0.018 |
+| 25 | survival | 7742 | 108 | 0.781 [0.744, 0.815] | 0.04 | 0.022 / 0.014 |
+| 26 | survival | 7717 | 102 | 0.732 [0.691, 0.770] | 0.03 | 0.022 / 0.013 |
+| 27 | survival | 7691 | 92 | 0.709 [0.661, 0.753] | 0.03 | 0.022 / 0.012 |
+| 28 | survival | 7663 | 79 | 0.711 [0.658, 0.759] | 0.02 | 0.021 / 0.010 |
+| 29 | survival | 7634 | 72 | 0.696 [0.639, 0.753] | 0.03 | 0.019 / 0.009 |
+| 30 | survival | 7615 | 85 | 0.775 [0.727, 0.821] | 0.04 | 0.018 / 0.011 |
+
+</details>
 <!-- END:time -->
 
 ## Use it
@@ -366,8 +521,9 @@ OULAD CSVs in `data/raw/oulad/` (see [data/README.md](data/README.md)).
 - The dropout model is calibrated to the training base rate. The test base rate is
   higher.
 - The cost ratio of 5 is an assumption. A real office would have to state its own.
-- The early-warning experiment has been checked on a fixture with OULAD's schema. It
-  has not yet been run on the real files.
+- The early-warning results come from one test presentation (2014J, seven modules)
+  and a model trained on the three earlier ones. Another university, or another year,
+  may differ; the Open University is a distance-learning institution.
 - What-if plans and reasons describe the model. No intervention has been tested, so
   nothing here shows that acting on a plan changes an outcome.
 - Most referrals go to academic support because assignment completion is the model's
