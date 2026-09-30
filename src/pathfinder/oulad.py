@@ -180,5 +180,5 @@ def snapshot(d: Oulad, week: int, *, demographic: bool = False) -> tuple[pd.Data
     return X, y
 
 
-def presentation_of(index: pd.MultiIndex) -> np.ndarray:
+def presentation_of(index: pd.Index) -> np.ndarray:
     return np.asarray(index.get_level_values("code_presentation"))
