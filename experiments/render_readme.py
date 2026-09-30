@@ -450,6 +450,68 @@ def student_card() -> str:
     return "\n".join(lines)
 
 
+def time_block() -> str:
+    t = j("time")
+    if t is None:
+        return (
+            "_Not run yet: needs the OULAD files in data/raw/oulad/ "
+            "(see data/README.md), then experiments/09_time_oulad.py._"
+        )
+    rows = [
+        [
+            str(r["week"]),
+            r["scorer"],
+            str(r["n"]),
+            str(r["events"]),
+            f"{r['auc']:.3f} [{r['auc_low']:.3f}, {r['auc_high']:.3f}]",
+            f"{r['precision_at_k']:.2f}",
+            f"{r['mean_predicted']:.3f} / {r['observed_rate']:.3f}",
+        ]
+        for r in t["table"]
+    ]
+    lead = [
+        [
+            name,
+            str(s["withdrawals"]),
+            ci(s["flagged_before_withdrawal"], 2),
+            ci(s["flagged_2_weeks_ahead"], 2),
+            "-" if s["median_lead_weeks"] is None else f"{s['median_lead_weeks']:.0f}",
+        ]
+        for name, s in t["lead_summary"].items()
+    ]
+    return (
+        f"Horizon {t['horizon_weeks']} weeks, capacity {t['capacity_share']:.0%} of each "
+        f"week's cohort. Trained on {', '.join(t['train_presentations'])}; tested on "
+        f"{', '.join(t['test_presentations'])}.\n\n"
+        + "![AUC by week](docs/figures/time_auc.svg)\n\n"
+        + "![Lead time](docs/figures/lead_time.svg)\n\n"
+        + table(
+            [
+                "scorer",
+                "withdrawals in test",
+                "flagged by the week of withdrawal",
+                "flagged 2+ weeks ahead",
+                "median lead (weeks)",
+            ],
+            lead,
+        )
+        + "\n\n<details><summary>Week-by-week table</summary>\n\n"
+        + table(
+            [
+                "week",
+                "scorer",
+                "students registered",
+                "withdrawals within horizon",
+                "AUC",
+                f"precision@{t['capacity_share']:.0%}",
+                "mean predicted / observed",
+            ],
+            rows,
+        )
+        + "\n\n</details>"
+    )
+
+
 BLOCKS: dict[str, Callable[[], str]] = {
     "headline": headline,
     "synthetic": synthetic,
@@ -463,6 +525,7 @@ BLOCKS: dict[str, Callable[[], str]] = {
     "feature_questions": feature_questions,
     "routing": routing,
     "student_card": student_card,
+    "time": time_block,
 }
 PATTERN = re.compile(r"(<!-- BEGIN:(\w+) -->\n)(.*?)(<!-- END:\2 -->)", re.S)
 

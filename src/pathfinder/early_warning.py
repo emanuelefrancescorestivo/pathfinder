@@ -78,3 +78,154 @@ def curve(
                 }
             )
     return pd.DataFrame(rows)
+
+
+# -- time-aware comparison ---------------------------------------------------------------
+#
+# The question an office asks is not "will this student ever withdraw?" but "who is
+# likely to leave in the next few weeks?". Three scorers answer it at each landmark week:
+#
+#   landmark            one logistic model per week, snapshot features, label = withdraws
+#                       within `horizon` weeks
+#   landmark+trajectory the same with trend features (click slope, recent vs earlier
+#                       activity, missed first assessment)
+#   survival            ONE discrete-time hazard model for all weeks (survival.py), risk
+#                       within `horizon` weeks from the weekly hazards
+#
+# All three are trained on the training presentations and scored on the test one.
+
+
+def weekly_scores(
+    d: Oulad,
+    weeks: list[int],
+    *,
+    horizon: int = 4,
+    train: tuple[str, ...] = TRAIN,
+    test: tuple[str, ...] = TEST,
+) -> tuple[dict[str, dict[int, pd.Series]], dict[int, pd.Series]]:
+    """Scores of each scorer for the test students still registered at each week."""
+    from .survival import HazardModel, horizon_label, person_period
+
+    scores: dict[str, dict[int, pd.Series]] = {
+        "landmark": {},
+        "landmark+trajectory": {},
+        "survival": {},
+    }
+    labels: dict[int, pd.Series] = {}
+
+    Xp, yp = person_period(d, list(range(0, max(weeks) + horizon)), trajectory=True)
+    in_train = np.isin(presentation_of(Xp.index), train)
+    hazard = HazardModel().fit(Xp[in_train], yp[in_train])
+
+    for w in weeks:
+        for name, traj in (("landmark", False), ("landmark+trajectory", True)):
+            X, _ = snapshot(d, w, trajectory=traj)
+            y = horizon_label(d, X.index, w, horizon)
+            pres = presentation_of(X.index)
+            tr, te = np.isin(pres, train), np.isin(pres, test)
+            labels[w] = y[te]
+            if y[tr].nunique() < 2:
+                continue  # no withdrawals in this window in the training data
+            model = make_pipeline(StandardScaler(), LogisticRegression(max_iter=3000))
+            p = model.fit(X[tr], y[tr]).predict_proba(X[te])[:, 1]
+            scores[name][w] = pd.Series(p, index=X.index[te])
+        Xs, _ = snapshot(d, w, trajectory=True)
+        te = np.isin(presentation_of(Xs.index), test)
+        scores["survival"][w] = pd.Series(
+            hazard.risk_within(Xs[te], w, horizon), index=Xs.index[te]
+        )
+    return scores, labels
+
+
+def horizon_table(
+    scores: dict[str, dict[int, pd.Series]],
+    labels: dict[int, pd.Series],
+    *,
+    capacity_share: float = 0.10,
+    n_boot: int = 1000,
+) -> pd.DataFrame:
+    """AUC (with interval), precision@k and calibration for each scorer and week."""
+    rows = []
+    for name, by_week in scores.items():
+        for w, s in by_week.items():
+            y = labels[w].reindex(s.index).to_numpy()
+            p = s.to_numpy()
+            if y.sum() == 0 or y.sum() == len(y):
+                continue
+            k = max(1, int(round(capacity_share * len(y))))
+            a = ev.bootstrap(ev.auc, y, p, n_boot=n_boot, seed=w, stratify=y)
+            rows.append(
+                {
+                    "week": w,
+                    "scorer": name,
+                    "n": len(y),
+                    "events": int(y.sum()),
+                    "auc": a.value,
+                    "auc_low": a.low,
+                    "auc_high": a.high,
+                    "precision_at_k": precision_at_k(y, p, k),
+                    "recall_at_k": recall_at_k(y, p, k),
+                    "mean_predicted": float(p.mean()),
+                    "observed_rate": float(y.mean()),
+                    "brier": ev.brier(y, p),
+                }
+            )
+    return pd.DataFrame(rows)
+
+
+def lead_times(
+    d: Oulad,
+    by_week: dict[int, pd.Series],
+    *,
+    capacity_share: float = 0.10,
+) -> pd.DataFrame:
+    """For each test student who withdrew during the course: when were they first flagged?
+
+    A student is flagged at week w if they are in the top `capacity_share` of that week's
+    still-registered cohort. lead = withdrawal week - first flagged week (weeks before
+    withdrawal that the office would have had). Students never flagged before
+    withdrawing get NaN.
+    """
+    from .oulad import withdrawal_day
+
+    first: dict[tuple, int] = {}
+    for w in sorted(by_week):
+        s = by_week[w]
+        k = max(1, int(round(capacity_share * len(s))))
+        for key in s.sort_values(ascending=False, kind="stable").index[:k]:
+            first.setdefault(key, w)
+    everyone = pd.MultiIndex.from_tuples(
+        sorted({key for s in by_week.values() for key in s.index}),
+        names=next(iter(by_week.values())).index.names,
+    )
+    day = withdrawal_day(d, everyone)
+    wk = np.floor(day / 7)
+    rows = []
+    for key, left in zip(everyone, wk, strict=True):
+        if np.isnan(left) or left > max(by_week):
+            continue  # did not withdraw within the weeks scored
+        f = first.get(key)
+        lead = float(left - f) if f is not None and f <= left else np.nan
+        rows.append(
+            {"student": key, "withdrawal_week": int(left), "first_flag_week": f, "lead_weeks": lead}
+        )
+    return pd.DataFrame(rows)
+
+
+def lead_summary(leads: pd.DataFrame, *, n_boot: int = 1000, seed: int = 0) -> dict:
+    """Share of withdrawals flagged at least 2 weeks ahead, with a bootstrap interval.
+
+    "flagged_before_withdrawal" counts a flag in the withdrawal week itself (lead 0).
+
+    One row per student, so resampling rows resamples students.
+    """
+    ahead = (leads["lead_weeks"] >= 2).to_numpy().astype(float)
+    flagged = leads["lead_weeks"].notna().to_numpy().astype(float)
+    e2 = ev.bootstrap(lambda a: float(a.mean()), ahead, n_boot=n_boot, seed=seed)
+    e0 = ev.bootstrap(lambda a: float(a.mean()), flagged, n_boot=n_boot, seed=seed)
+    return {
+        "withdrawals": int(len(leads)),
+        "flagged_before_withdrawal": e0.as_dict(),
+        "flagged_2_weeks_ahead": e2.as_dict(),
+        "median_lead_weeks": float(leads["lead_weeks"].median()) if flagged.any() else None,
+    }

@@ -280,6 +280,36 @@ future clicks and submissions and checks that no feature moves.
 _Not run yet. The OULAD files were not reachable where this was written; see data/README.md, then run experiments/05_early_warning_oulad.py._
 <!-- END:early_warning -->
 
+### Who leaves in the next four weeks?
+
+"Will this student ever withdraw?" is the wrong question for a weekly meeting. The
+useful one is "who is likely to leave soon enough that a call this week still matters?"
+[`experiments/09_time_oulad.py`](experiments/09_time_oulad.py) answers it for every week
+of the test presentation, with three scorers:
+
+- **weekly snapshot**: one logistic model per week, fitted on the snapshot features,
+  label = withdraws within 4 weeks;
+- **snapshot + trajectory**: the same, plus how activity is *changing*: the weekly
+  click slope, the last two weeks against the two before, the share of weeks active, and
+  whether the first assignment was missed;
+- **survival**: one discrete-time hazard model for the whole course
+  ([`survival.py`](src/pathfinder/survival.py)). Each week a student is still registered
+  is a row, and students who never withdraw are *censored*, not labelled "stayed" (the
+  same idea as the Tobit model for grades). The risk over the next 4 weeks is built from
+  the weekly hazards.
+
+The number an office would care about most is the **lead time**: for each student who
+withdrew, how many weeks before leaving they first appeared in the top 10% of that
+week's list. Intervals resample students, not weekly rows, because the same student
+appears every week.
+
+One limit no offline evaluation removes: if an office acts on the list, it changes the
+outcomes the model was trained to predict.
+
+<!-- BEGIN:time -->
+_Not run yet: needs the OULAD files in data/raw/oulad/ (see data/README.md), then experiments/09_time_oulad.py._
+<!-- END:time -->
+
 ## Use it
 
 ```
@@ -321,9 +351,11 @@ OULAD CSVs in `data/raw/oulad/` (see [data/README.md](data/README.md)).
 | `src/pathfinder/explain.py` | exact per-feature contributions of a linear model |
 | `src/pathfinder/counterfactual.py` | what-if plans (DiCE-style: sparse, diverse), solved exactly |
 | `src/pathfinder/segments.py` | routing to offices, and the K-means cluster check |
-| `src/pathfinder/oulad.py`, `early_warning.py` | OULAD snapshots at week w, forward-in-time evaluation |
+| `src/pathfinder/oulad.py`, `early_warning.py` | OULAD snapshots at week w (with trajectory features), forward-in-time evaluation, lead times |
+| `src/pathfinder/survival.py` | person-period data and the discrete-time hazard model |
 | `experiments/00`–`05` | synthetic check, selection, single test evaluation, audit, figures, OULAD |
 | `experiments/06`–`08` | feature questions, office views, story figures |
+| `experiments/09` | OULAD: who leaves in the next four weeks, and how early |
 | `experiments/render_readme.py` | fills this file's tables from `results/` |
 
 ## Limitations

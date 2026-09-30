@@ -2,6 +2,7 @@
 
 from pathlib import Path
 
+import numpy as np
 import pandas as pd
 import pytest
 
@@ -158,3 +159,47 @@ def test_load_reads_question_marks_as_missing(tmp_path: Path):
     (tmp_path / "studentAssessment.csv").write_text(text)
     d = oulad.load(tmp_path)
     assert d.student_assessment["score"].isna().sum() == 1
+
+
+def test_trajectory_features_by_hand():
+    X, _ = oulad.snapshot(as_oulad(fixture()), week=2, trajectory=True)
+    one, two = X.iloc[0], X.iloc[1]
+    assert one["clicks_prev_14d"] == 4  # day -3 is in [-14, 0)
+    assert one["click_trend"] == pytest.approx(np.log1p(16) - np.log1p(4))
+    assert one["weekly_click_slope"] == pytest.approx(-4.0)  # weeks 0, 1: 10 then 6 clicks
+    assert one["active_week_share"] == 1.0
+    assert one["missed_first_assessment"] == 0
+    assert two["weekly_click_slope"] == pytest.approx(-3.0)  # 3 clicks in week 0, none in 1
+    assert two["active_week_share"] == 0.5
+
+
+def test_missed_first_assessment_counts_only_what_was_due():
+    f = fixture()
+    f["studentAssessment"] = f["studentAssessment"][f["studentAssessment"]["id_student"] != 2]
+    X, _ = oulad.snapshot(as_oulad(f), week=2, trajectory=True)
+    assert list(X["missed_first_assessment"]) == [0, 1]
+    X1, _ = oulad.snapshot(as_oulad(f), week=1, trajectory=True)  # day 7: not yet due
+    assert X1["missed_first_assessment"].sum() == 0
+
+
+def test_trajectory_features_ignore_the_future():
+    f = fixture()
+    before, _ = oulad.snapshot(as_oulad(f), week=2, trajectory=True)
+    g = {k: v.copy() for k, v in f.items()}
+    g["studentVle"] = pd.concat(
+        [
+            g["studentVle"],
+            pd.DataFrame(
+                {
+                    "code_module": M,
+                    "code_presentation": P,
+                    "id_student": [1, 2],
+                    "id_site": 7,
+                    "date": [14, 40],
+                    "sum_click": [500, 500],
+                }
+            ),
+        ]
+    )
+    after, _ = oulad.snapshot(as_oulad(g), week=2, trajectory=True)
+    pd.testing.assert_frame_equal(before, after)

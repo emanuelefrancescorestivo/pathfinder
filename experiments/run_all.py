@@ -27,9 +27,10 @@ for step in STEPS:
     runpy.run_path(str(HERE / step), run_name="__main__")
 
 if (HERE.parent / "data" / "raw" / "oulad" / "studentInfo.csv").exists():
-    print("== 05_early_warning_oulad.py")
-    runpy.run_path(str(HERE / "05_early_warning_oulad.py"), run_name="__main__")
+    for step in ("05_early_warning_oulad.py", "09_time_oulad.py"):
+        print(f"== {step}")
+        runpy.run_path(str(HERE / step), run_name="__main__")
 else:
-    print("== 05_early_warning_oulad.py skipped: data/raw/oulad/ is empty")
+    print("== 05 and 09 (OULAD) skipped: data/raw/oulad/ is empty")
 
 runpy.run_path(str(HERE / "render_readme.py"), run_name="__main__")

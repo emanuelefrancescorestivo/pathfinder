@@ -181,3 +181,11 @@ Observed dropout rate: 0.190 in the test set, 0.150 in the training set.
 - **Status.** Fixed: `sparse_plans` solves every subset of at most two levers exactly,
   rounds integer levers to whole units, and keeps up to three plans, each using a lever
   the others do not. The minimum-norm solver remains as `joint_plan`.
+
+### 16. Lead times above twelve weeks dropped from a chart
+
+- **What.** The first version of the lead-time histogram had bins up to 12 weeks and
+  silently left out students flagged earlier than that.
+- **How found.** Running `experiments/09_time_oulad.py` end to end on a synthetic
+  dataset with OULAD's schema, before any real data, and reading the chart.
+- **Status.** Fixed: a final "13+" bin. The summary table was never affected.
