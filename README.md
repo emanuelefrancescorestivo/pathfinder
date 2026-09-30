@@ -18,8 +18,8 @@ interval, and has been checked against a held-out cohort exactly once.
 > [Early warning on real data](#early-warning-on-real-data)).
 
 PathFinder predicts two things about a first-year university student: the final grade,
-and the risk of dropping out. It started as my Machine Learning course project in the
-first year at PSL. This repository rebuilds it, and it also keeps a record of what the
+and the risk of dropping out. It started as a first-year Machine Learning course
+project at PSL, written with Marcos Almodovar and Yani Boukrif. This repository rebuilds it, and it also keeps a record of what the
 original got wrong ([AUDIT.md](AUDIT.md); the original notebook is kept, unmodified, in
 [`original/`](original/)): four validation defects, one mis-specified
 model, and several claims the method did not support. Every fix is measured.
@@ -531,7 +531,15 @@ OULAD CSVs in `data/raw/oulad/` (see [data/README.md](data/README.md)).
 - Most referrals go to academic support because assignment completion is the model's
   strongest driver. On real data the mix would have to be re-examined.
 
+## Credits
+
+- **Original course project** ([`original/`](original/)): Emanuele Restivo, Marcos
+  Almodovar and Yani Boukrif.
+- **This rebuild** (the package, experiments, audit and documentation): Emanuele Restivo.
+- **OULAD**: Kuzilek, Hlosta and Zdrahal (2017), *Scientific Data* 4, 170171, CC BY 4.0.
+
 ## License
 
-MIT, see [LICENSE](LICENSE). The course dataset is not included and is not covered by
-this license.
+MIT, see [LICENSE](LICENSE), for this repository's code and documentation. The original
+notebook in `original/` is the joint work of its three authors. The course dataset is not
+included and is not covered by this license.

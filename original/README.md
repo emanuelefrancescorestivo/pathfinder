@@ -1,7 +1,8 @@
 # The original course notebook
 
 `ML2_FINAL_PATHFINDERCOMPLETE_2.ipynb` is the first-year Machine Learning course project
-(PSL) that this repository rebuilds. It is kept **unmodified**, outputs included, so
+(PSL) that this repository rebuilds, written by Emanuele Restivo, Marcos Almodovar and
+Yani Boukrif. It is kept **unmodified**, outputs included, so
 that every claim in [AUDIT.md](../AUDIT.md) can be checked against it.
 
     SHA-256 d24f5e032cc9d2e987856072eb75978d639eac45e29eaff1b4a40ff2b6999fc5
