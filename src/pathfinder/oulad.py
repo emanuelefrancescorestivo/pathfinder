@@ -248,7 +248,7 @@ def _trajectory(v: pd.DataFrame, cutoff: int, week: int) -> pd.DataFrame:
     return out.reset_index()
 
 
-def withdrawal_day(d: Oulad, index: pd.MultiIndex) -> pd.Series:
+def withdrawal_day(d: Oulad, index: pd.Index) -> pd.Series:
     """Day of unregistration for each student-module in `index` (NaN if none)."""
     reg = d.registration.set_index(KEY)["date_unregistration"]
     return reg.reindex(index)

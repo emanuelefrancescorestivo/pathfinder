@@ -47,7 +47,7 @@ def person_period(
     return X, pd.concat(labels)
 
 
-def horizon_label(d: Oulad, index: pd.MultiIndex, week: int, horizon: int) -> pd.Series:
+def horizon_label(d: Oulad, index: pd.Index, week: int, horizon: int) -> pd.Series:
     """1 if the student unregisters within `horizon` weeks of the start of `week`."""
     day = withdrawal_day(d, index).to_numpy()
     y = (day >= 7 * week) & (day < 7 * (week + horizon))
